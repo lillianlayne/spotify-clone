@@ -3,18 +3,19 @@ I use Spotify all day, every day and have been for decades it feels. I wanted to
 
 ### Technology Used 
 --- 
-React 
-<br> 
-Vite 
-<br> 
-Tailwind
-<br> 
-Javascript
-<br> 
-Express
-<br> 
 MongoDB
 <br>
+Express
+<br>
+React
+<br>
+Node.js
+<br>
+JavaScript
+<br>
+Tailwind
+<br>
+
 
 ### Wireframes
 ---
@@ -31,6 +32,8 @@ MongoDB
 ---
 View the deployed version here (link available soon)
 
-### Credits
+### Other Sources
 ---
-TBD
+__Figma__: Creating high-fidelity wireframing and component organization 
+<br>
+__SpotifyAPI__: Utilizing Spotify's API to retrieve data on the music industry

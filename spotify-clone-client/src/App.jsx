@@ -8,9 +8,12 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Nav from "./components/Nav";
 import Dashboard from "./pages/Dashboard";
+import AlbumView from "./pages/AlbumView";
+import useAccessToken from "./hooks/useAccessToken";
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const accessToken = useAccessToken();
 
   const handleLogout = async (e) => {
     setUser(null);
@@ -36,6 +39,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard user={user} />}/>
+          <Route path="/dashboard/:id" element={<AlbumView token={accessToken} user={user}/>}/>
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
         </Routes>

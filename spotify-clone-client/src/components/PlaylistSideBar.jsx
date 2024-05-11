@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import useUser from '../hooks/useUser'
 
 const PlaylistSideBar = ({user}) => {
   const userData = useUser(user.id);
-  console.log(userData)
+  
+
   return (
     <div>
       

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useAccessToken from "../hooks/useAccessToken";
 
 const Search = () => {
@@ -53,9 +54,11 @@ const Search = () => {
         {
           albums.map((album) => (
             <div className="col-auto">
+             <Link to={`${album.id}`}>
               <h1>
                 {album.name}
               </h1>
+             </Link>
             </div>
           ))
         }

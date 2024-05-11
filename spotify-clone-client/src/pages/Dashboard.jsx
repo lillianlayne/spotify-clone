@@ -1,9 +1,10 @@
 import React from 'react'
+import Search from '../components/Search'
 
 const Dashboard = ({user}) => {
   return (
     <div>
-      {user}
+      <Search />
     </div>
   )
 }

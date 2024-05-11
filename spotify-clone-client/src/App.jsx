@@ -1,97 +1,47 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import { CheckSession } from "./services/Auth";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Container,
-  InputGroup,
-  FormControl,
-  Button,
-  Card,
-  Row,
-} from "react-bootstrap";
+import "./App.css";
+import SignIn from "./pages/SignIn";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Nav from "./components/Nav";
+import Dashboard from "./pages/Dashboard";
 
-const spotifyKey = import.meta.env.VITE_SPOTIFY_KEY;
-const spotifySecret = import.meta.env.VITE_SPOTIFY_SECRET;
+const App = () => {
+  const [user, setUser] = useState(null);
 
-function App() {
-  const [accessToken, setAccessToken] = useState("");
-  const [input, setInput] = useState("");
-  const [albums, setAlbums] = useState([])
+  const handleLogout = async (e) => {
+    setUser(null);
+    localStorage.clear();
+  };
+
+  const checkToken = async () => {
+    const user = await CheckSession();
+    setUser(user);
+  };
 
   useEffect(() => {
-    // Get API access token
-    var authParameters = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `grant_type=client_credentials&client_id=${spotifyKey}&client_secret=${spotifySecret}`,
-    };
-    fetch("https://accounts.spotify.com/api/token", authParameters)
-      .then((result) => result.json())
-      .then((data) => setAccessToken(data.access_token));
+    const token = localStorage.getItem("token");
+    if (token) {
+      checkToken();
+    }
   }, []);
-
-  const search = async () => {
-    console.log("searching for " + input);
-    // GET request using search to get Artist ID
-    var artistParams = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    };
-
-    var artistId = await fetch(
-      `https://api.spotify.com/v1/search?q=${input}&type=artist`,
-      artistParams
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        return data.artists.items[0].id;
-      });
-
-      console.log(artistId)
-    // GET request with Artist ID grab all albums from that artist
-      var returnedAlbums = await fetch(`https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album&market=US&limit=50`, artistParams).then(response => response.json()).then(data => setAlbums(data.items))
-    // display artists
-  };
 
   return (
     <div className="App">
-      <Container>
-        <InputGroup className="mb-3" size="lg">
-          <FormControl
-            placeholder="Search for Artist"
-            type="input"
-            onChange={(event) => setInput(event.target.value)}
-          />
-          <Button
-            onClick={() => {
-              search();
-            }}
-          ></Button>
-        </InputGroup>
-      </Container>
-      <Container>
-        <Row className="mx-2 row row-cols-4">
-          {
-            albums.map((album) => (
-          <Card>
-            <Card.Img src={album.images[0].url} />
-            <Card.Body>
-              <Card.Title>{album.name}</Card.Title>
-            </Card.Body>
-          </Card>
-
-            ))
-          }
-        </Row>
-      </Container>
+      <Nav user={setUser} handleLogout={handleLogout}/>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard user={user} />}/>
+          <Route path="/signin" element={<SignIn setUser={setUser} />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </main>
     </div>
   );
-}
+};
 
 export default App;

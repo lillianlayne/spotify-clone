@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAlbums } from "../services/SpotifyApi/GetSpotify";
+import { getAlbumsByArtist, getArtistId, getAuth } from "../services/SpotifyApi/SpotifyApi";
 
 const Search = () => {
   const [input, setInput] = useState("");
   const [albums, setAlbums] = useState([])
 
   const search = async () => {
-    const fetchAlbums = await getAlbums(input);
-    setAlbums(fetchAlbums)
+   const fetchedAlbums = await getAlbumsByArtist(input);
+   setAlbums(fetchedAlbums)
   }
 
   return (

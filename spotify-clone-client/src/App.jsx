@@ -10,17 +10,32 @@ import SearchScreen from "./pages/SearchScreen";
 import { useUser } from "./context/userContext";
 
 const App = () => {
-  const { userData } = useUser();
+  const {setUserData} = useUser();
+  const [user, setUser] = useState(null);
 
-  console.log(localStorage)
-  let nav;
-  if (userData) {
-    nav = <Nav />;
-  }
+  const checkToken = async () => {
+    const user = await CheckSession();
+    setUser(user);
+    setUserData(localStorage)
+  };
 
-  return userData ? (
+  const handleLogOut = () => {
+    setUser(null);
+    localStorage.clear();
+  };
+
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      checkToken();
+    }
+  }, []);
+
+
+  return user !== null ? (
     <div className="App">
-      <Nav />
+      <Nav handleLogOut={handleLogOut}/>
       <main>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
@@ -32,7 +47,8 @@ const App = () => {
     <div className="App">
       <main>
         <Routes>
-          <Route path="/" element={<LoginScreen />} />
+      <Route path="/search" element={<SearchScreen />} />
+          <Route path="/" element={<LoginScreen setUser={setUser} />} />
         </Routes>
         </main>
     </div>

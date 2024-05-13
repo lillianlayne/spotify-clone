@@ -3,9 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../context/userContext";
 import { SignInUser } from "../services/Auth";
 
-const LoginScreen = () => {
+const LoginScreen = (props) => {
   let navigate = useNavigate()
-  const { setUserData } = useUser();
   const [formValues, setFormValues] = useState({ email: '', password: ''})
 
   const handleChange = (e) => {
@@ -21,7 +20,8 @@ const LoginScreen = () => {
 
       const res = await SignInUser(loginInfo);
 
-      setUserData(res);
+     
+      props.setUser(res)
       navigate("/");
     } catch (error) {
       console.error("Error signing in:", error);

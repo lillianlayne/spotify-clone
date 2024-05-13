@@ -4,7 +4,7 @@ const SearchScreen = () => {
 
   return (
     <div>
-      {/* <Search />       */}
+      <Search />      
     </div>
   )
 }

@@ -3,7 +3,7 @@ const spotifySecret = import.meta.env.VITE_SPOTIFY_SECRET;
 import Client from './Api'
 
 
-export const spotifyToken = () => {
+export const getSpotifyToken = () => {
 
   let token;
   // Get API access token

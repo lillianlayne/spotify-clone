@@ -3,49 +3,41 @@ import { Route, Routes } from "react-router-dom";
 import { CheckSession } from "./services/Auth";
 import axios from "axios";
 import "./App.css";
-import SignIn from "./pages/SignIn";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
+import HomeScreen from "./pages/HomeScreen";
 import Nav from "./components/Nav";
-import Dashboard from "./pages/Dashboard";
-import AlbumView from "./pages/AlbumView";
-import useAccessToken from "./hooks/useAccessToken";
+import LoginScreen from "./pages/LoginScreen";
+import SearchScreen from "./pages/SearchScreen";
+import { useUser } from "./context/userContext";
 
 const App = () => {
-  const [user, setUser] = useState(null);
-  const accessToken = useAccessToken();
+  const { userData } = useUser();
 
-  const handleLogout = async (e) => {
-    setUser(null);
-    localStorage.clear();
-  };
+  console.log(localStorage)
+  let nav;
+  if (userData) {
+    nav = <Nav />;
+  }
 
-  const checkToken = async () => {
-    const user = await CheckSession();
-    setUser(user);
-  };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      checkToken();
-    }
-  }, []);
-
-  return (
+  return userData ? (
     <div className="App">
-      <Nav user={setUser} handleLogout={handleLogout}/>
+      <Nav />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard user={user} />}/>
-          <Route path="/dashboard/:id" element={<AlbumView token={accessToken} user={user}/>}/>
-          <Route path="/signin" element={<SignIn setUser={setUser} />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/search" element={<SearchScreen />} />
         </Routes>
       </main>
     </div>
-  );
+  ) : (
+    <div className="App">
+      <main>
+        <Routes>
+          <Route path="/" element={<LoginScreen />} />
+        </Routes>
+        </main>
+    </div>
+  )
+
 };
 
 export default App;

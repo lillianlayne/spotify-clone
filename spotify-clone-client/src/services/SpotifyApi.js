@@ -4,7 +4,7 @@ import { config } from "dotenv";
 const spotifyKey = import.meta.env.VITE_SPOTIFY_KEY;
 const spotifySecret = import.meta.env.VITE_SPOTIFY_SECRET;
 
-export const spotifyToken = () => {
+export const getSpotifyToken = () => {
   let token;
   // Get API access token
   const authParameters = {
@@ -24,7 +24,7 @@ export const spotifyToken = () => {
 };
 
 export const getSongs = async (album_id) => {
-  const accessToken = spotifyToken();
+  const accessToken = getSpotifyToken();
   const apiUrl = `https://api.spotify.com/v1/albums/${album_id}/tracks`;
 
   try {

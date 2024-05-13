@@ -1,8 +1,11 @@
 import Client from './Api'
+import useAccessToken from '../hooks/useAccessToken'
 
 export const SignInUser = async (data) => {
+  // const spotifyToken = useAccessToken()
   try {
     const res = await Client.post('/auth/login', data)
+    // localStorage.setItem('accessToken', spotifyToken)
     localStorage.setItem('token', res.data.token)    
     return res.data.user
   } catch (error) {

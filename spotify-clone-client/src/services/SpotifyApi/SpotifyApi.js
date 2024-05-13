@@ -63,3 +63,20 @@ export const getAlbumsByArtist = async (input) => {
     return response.data.items
   } catch (error) {}
 }
+
+export const getAlbumTracklist = async (id) => {
+  const token = await getAuth();
+  const url = `https://api.spotify.com/v1/albums/${id}/tracks`;
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data.items
+  } catch (error) {}
+
+}

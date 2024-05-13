@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { CheckSession } from "./services/Auth";
-import axios from "axios";
 import "./App.css";
+import { useUser } from "./context/userContext";
 import HomeScreen from "./pages/HomeScreen";
 import Nav from "./components/Nav";
 import LoginScreen from "./pages/LoginScreen";
 import SearchScreen from "./pages/SearchScreen";
-import { useUser } from "./context/userContext";
+import AlbumScreen from "./pages/AlbumScreen";
 
 const App = () => {
   const {setUserData} = useUser();
@@ -40,6 +40,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/search" element={<SearchScreen />} />
+          <Route path="/albums/:id" element={<AlbumScreen />} />
         </Routes>
       </main>
     </div>

@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAlbumsByArtist, getArtistId, getAuth } from "../services/SpotifyApi/SpotifyApi";
 
 const Search = () => {
+  let navigate = useNavigate()
   const [input, setInput] = useState("");
   const [albums, setAlbums] = useState([])
 
   const search = async () => {
    const fetchedAlbums = await getAlbumsByArtist(input);
    setAlbums(fetchedAlbums)
+  }
+
+  const getAlbumInfo = (e) => {
+    navigate(`/albums/${e}`)
   }
 
   return (
@@ -26,13 +32,10 @@ const Search = () => {
       <div className="flex flex-col">
         {
           albums.map((album) => (
-            <div key={album.id} className="py-4">
-             <Link to={`${album.id}`}>
-              <h1>
+            <button key={album.id} value={album.id} onClick={e => getAlbumInfo(e.target.value)} className="py-4">
+             
                 {album.name}
-              </h1>
-             </Link>
-            </div>
+            </button>
           ))
         }
       </div>

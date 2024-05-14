@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 import LoginScreen from "./pages/LoginScreen";
 import SearchScreen from "./pages/SearchScreen";
 import AlbumScreen from "./pages/AlbumScreen";
+import PlaylistScreen from "./pages/PlaylistScreen";
 
 const App = () => {
   const {setUserData} = useUser();
@@ -40,7 +41,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/search" element={<SearchScreen />} />
-          <Route path="/albums/:id" element={<AlbumScreen />} />
+          <Route path="/playlists" element={<PlaylistScreen user={user}/>} />
+          <Route path="/albums/:id" element={<AlbumScreen user={user}/>} />
         </Routes>
       </main>
     </div>

@@ -15,7 +15,7 @@ const Nav = (props) => {
       <NavLink to="/search">
         <Icons type="search" fill="none" stroke="white" />
       </NavLink>
-      <NavLink to="/">
+      <NavLink to="/playlists">
         <Icons type="music" fill="none" stroke="white" />
       </NavLink>
       <NavLink to="/">

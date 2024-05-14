@@ -34,7 +34,7 @@ const App = () => {
   }, []);
 
 
-  return user !== null ? (
+  return user ? (
     <div className="App">
       <Nav handleLogOut={handleLogOut}/>
       <main>

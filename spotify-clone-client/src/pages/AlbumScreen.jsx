@@ -11,14 +11,12 @@ import TrackDisplay from "../components/TrackDisplay";
 import { addToLikedSongs } from "../services/UserServices";
 import { useUser } from "../context/userContext";
 
-const AlbumScreen = ({user}) => {
+const AlbumScreen = ({ user }) => {
   const { id } = useParams();
   const [loaded, setLoaded] = useState(false);
   const [albumInfo, setAlbumInfo] = useState([]);
   const [albumArt, setAlbumArt] = useState([]);
   const [trackId, setTrackId] = useState("");
-  
- 
 
   const getInfo = async () => {
     const fetchedData = await getAlbumTracklist(id);
@@ -67,9 +65,7 @@ const AlbumScreen = ({user}) => {
       <h6 className="text-center">{albumInfo.name}</h6>
       {image}
       <div className="mx-auto w-3/4"></div>
-      <div className="flex-col">
-        {trackList}
-      </div>
+      <div className="flex-col">{trackList}</div>
     </div>
   );
 };

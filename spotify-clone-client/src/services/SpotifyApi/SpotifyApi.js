@@ -97,3 +97,21 @@ export const getSingleTrack = async (id) => {
   } catch (error) {}
 
 }
+
+export const getPopularPlaylists = async () => {
+  const token = await getAuth();
+  const url = 'https://api.spotify.com/v1/browse/featured-playlists?limit=10';
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
+}

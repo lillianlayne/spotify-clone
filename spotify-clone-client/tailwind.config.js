@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+
+    extend: {
+      colors: {
+        darkGradient: 'linear-gradient(45deg, #121212, #212526)',
+        blackish: '#ffffff10',
+      },
+    },
   },
   plugins: [
   ],

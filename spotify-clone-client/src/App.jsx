@@ -35,7 +35,7 @@ const App = () => {
 
 
   return user ? (
-    <div className="App">
+    <div className="App bg-darkGradient">
       <Nav handleLogOut={handleLogOut}/>
       <main>
         <Routes>

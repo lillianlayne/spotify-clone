@@ -7,7 +7,7 @@ const Nav = (props) => {
   const { userData } = useUser();
 
   return (
-    <nav className="flex flex-row justify-between py-6 bg-stone-700 w-full fixed bottom-0">
+    <nav className="flex flex-row justify-between py-6 w-full fixed bottom-0 bg-blackish">
       <NavLink to="/">
         <Icons type="home" fill="none" stroke="white" />
       </NavLink>

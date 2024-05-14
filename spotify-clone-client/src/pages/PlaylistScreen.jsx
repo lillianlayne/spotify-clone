@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../context/userContext";
 import { GetUser } from "../services/UserServices";
 import { getSingleTrack } from "../services/SpotifyApi/SpotifyApi";
+import SongsList from "../components/SongsList";
 
 const PlaylistScreen = ({ user }) => {
   const [playlistData, setPlaylistData] = useState([]);
@@ -49,18 +50,14 @@ const PlaylistScreen = ({ user }) => {
 
 
   return (
-    <div>
+    <div className="py-4 px-8">
       <div className="btn rounded-full border text-sm border-stone-400 w-fit py-1 px-4">
         Songs
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-4">
         {
         songData.map((song) => (
-          <div key={song.id} className="flex justify-between">
-            <p>
-              {song.name}
-            </p>
-          </div>
+          <SongsList key={song.id} track={song} />
         ))
         }
       </div>

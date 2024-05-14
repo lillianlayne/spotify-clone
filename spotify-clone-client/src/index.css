@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn-primary {
+    @apply text-center flex justify-center items-center h-14 w-full text-white;
+  }
+}
+
 body {
-  background: #17171c;
   color: white;
+  background: linear-gradient(5deg, #121212, #121212, #212526);
 }

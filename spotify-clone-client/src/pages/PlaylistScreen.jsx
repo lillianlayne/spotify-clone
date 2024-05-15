@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useUser } from "../context/userContext";
 import { GetUser } from "../services/UserServices";
-import { getSingleTrack } from "../services/SpotifyApi/SpotifyApi";
+import { getSingleTrack } from "../services/SpotifyApi/MusicServices";
 import SongsList from "../components/SongsList";
 
 const PlaylistScreen = ({ user }) => {

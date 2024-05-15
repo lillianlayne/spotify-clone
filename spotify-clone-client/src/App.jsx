@@ -9,15 +9,16 @@ import LoginScreen from "./pages/LoginScreen";
 import SearchScreen from "./pages/SearchScreen";
 import AlbumScreen from "./pages/AlbumScreen";
 import PlaylistScreen from "./pages/PlaylistScreen";
+import LibraryScreen from "./pages/LibraryScreen";
 
 const App = () => {
-  const {setUserData} = useUser();
+  const { setUserData } = useUser();
   const [user, setUser] = useState(null);
 
   const checkToken = async () => {
     const user = await CheckSession();
     setUser(user);
-    setUserData(localStorage)
+    setUserData(localStorage);
   };
 
   const handleLogOut = () => {
@@ -25,7 +26,6 @@ const App = () => {
     localStorage.clear();
   };
 
-  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -33,16 +33,15 @@ const App = () => {
     }
   }, []);
 
-
   return user ? (
     <div className="App bg-darkGradient">
-      <Nav handleLogOut={handleLogOut}/>
+      <Nav handleLogOut={handleLogOut} />
       <main>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/search" element={<SearchScreen />} />
-          <Route path="/playlists" element={<PlaylistScreen user={user}/>} />
-          <Route path="/albums/:id" element={<AlbumScreen user={user}/>} />
+          <Route path="/playlists" element={ <LibraryScreen user={user} />} />
+          <Route path="/albums/:id" element={ <AlbumScreen user={user} />} />
         </Routes>
       </main>
     </div>
@@ -50,13 +49,12 @@ const App = () => {
     <div className="App">
       <main>
         <Routes>
-      <Route path="/search" element={<SearchScreen />} />
+          <Route path="/search" element={<SearchScreen />} />
           <Route path="/" element={<LoginScreen setUser={setUser} />} />
         </Routes>
-        </main>
+      </main>
     </div>
-  )
-
+  );
 };
 
 export default App;

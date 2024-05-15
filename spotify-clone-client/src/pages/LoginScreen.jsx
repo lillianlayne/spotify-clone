@@ -27,9 +27,9 @@ const LoginScreen = (props) => {
     }
   };
   return (
-    <div className="flex-col mx-auto px-4">
+    <div className="flex-col justify-center items-center h-screen px-4">
       <h1>Welcome Back</h1>
-      <form className="flex flex-col gap-2 w-full" onSubmit={login}>
+      <form className="flex flex-col h-screen justify-center gap-2 w-full" onSubmit={login}>
         <input
           className="text-stone-900 w-full px-2 h-14"
           onChange={handleChange}

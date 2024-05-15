@@ -3,10 +3,11 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAlbumTracklist } from "../services/SpotifyApi/MusicServices";
 import TrackDisplay from "../components/TrackDisplay";
-import { addToLikedSongs } from "../services/UserServices";
+import { addToLikedList } from "../services/UserServices";
 import { useUser } from "../context/userContext";
 
 const AlbumScreen = ({ user }) => {
+
   const { id } = useParams();
   const [songId, setSongId] = useState(null);
   const [album, setAlbum] = useState();
@@ -16,9 +17,7 @@ const AlbumScreen = ({ user }) => {
     setAlbum(fetchedData);
   };
 
-  const addTrack = async (e) => {
-    console.log(e.target);
-  };
+
 
   useEffect(() => {
     setSongId(id);
@@ -32,16 +31,18 @@ const AlbumScreen = ({ user }) => {
 
 
   return (
-    <div className="relative">
-      <div className="absolute blur-3xl -z-10 h-screen object-cover opacity-50">
+    <div className="relative h-screen overflow-hidden">
+      <div className="absolute blur-2xl -z-10 h-screen object-cover opacity-40">
         {album ? 
       <img className="h-full object-cover" src={album.images[0].url} alt="" /> : null  
       }
       </div>
+      <div className="absolute h-full overflow-scroll pb-20">
       {
         album ? 
-        <TrackDisplay addTrack={addTrack} album={album}/> : null
+        <TrackDisplay album={album}/> : null
       }
+      </div>
     </div>
   );
 };

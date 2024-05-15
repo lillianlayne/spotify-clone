@@ -9,11 +9,9 @@ export const GetUser = async (id) => {
   }
 }
 
-export const addToLikedSongs = async (userId, songId) => {
-
-
+export const addToLikedList = async (listType, userId, id) => {
   try {
-    const res = await Client.post(`/user/${userId}/songs`, songId)
+    const res = await Client.post(`/user/${userId}/${listType}`, id)
     return res.data
   } catch (error) {
     console.log(error)

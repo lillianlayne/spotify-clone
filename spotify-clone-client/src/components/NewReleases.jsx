@@ -31,7 +31,7 @@ const NewReleases = () => {
             <div className="w-full object-cover">
               <img src={album.images[0].url} alt="" />
             </div>
-            <h5 className="mt-2 leading-none">{album.name}</h5>
+            <h5 className="mt-2 text-sm pr-2 leading-none">{album.name}</h5>
             <p className="text-xs mt-1">{album.artists[0].name}</p>
             </Link>
           </div>

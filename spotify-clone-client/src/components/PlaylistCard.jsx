@@ -6,7 +6,7 @@ const PlaylistCard = ({title, image, owner}) => {
       <div className='w-full object-cover'>
         <img src={image} alt="" />
       </div>
-      <h5 className='mt-2'>
+      <h5 className='text-sm mt-2'>
         {title}
       </h5>
       <p className="text-xs">

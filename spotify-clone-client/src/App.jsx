@@ -25,7 +25,7 @@ const App = () => {
   const getUserData = async (id) => {
     const userData = await GetUser(id);
     setUserData(userData);
-  };
+  }; 
 
   const handleLogOut = () => {
     setUser(null);

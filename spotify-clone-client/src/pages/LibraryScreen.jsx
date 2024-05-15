@@ -5,11 +5,14 @@ import AlbumsList from "../components/AlbumsList";
 import ArtistList from "../components/ArtistList";
 import PlaylistList from "../components/PlaylistList";
 import { GetUser } from "../services/UserServices";
+import { useUser } from '../context/userContext'
+
 
 const LibraryScreen = ({ user }) => {
-  const [view, setView] = useState("songs");
+  const {userData} = useUser()
+  const [view, setView] = useState("albums");
   const [loaded, setLoaded] = useState(false)
-  const [userData, setUserData] = useState([]) 
+  const [userObj, setUserObj] = useState() 
 
   const switchView = (e) => {
     e.preventDefault();
@@ -23,7 +26,7 @@ const LibraryScreen = ({ user }) => {
       display = <SongsList />;
       break;
     case "albums":
-      display = <AlbumsList user={user} />;
+      display = <AlbumsList user={userData} />;
       break;
     case "artists":
       display = <ArtistList user={user} />;
@@ -36,7 +39,9 @@ const LibraryScreen = ({ user }) => {
   }
 
 
-
+useEffect(() => {
+  setUserObj(userData)
+}, []);
   
 
   return (

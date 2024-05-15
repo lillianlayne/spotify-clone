@@ -10,6 +10,7 @@ import SearchScreen from "./pages/SearchScreen";
 import AlbumScreen from "./pages/AlbumScreen";
 import PlaylistScreen from "./pages/PlaylistScreen";
 import LibraryScreen from "./pages/LibraryScreen";
+import { GetUser } from "./services/UserServices";
 
 const App = () => {
   const { setUserData } = useUser();
@@ -18,8 +19,13 @@ const App = () => {
   const checkToken = async () => {
     const user = await CheckSession();
     setUser(user);
-    setUserData(localStorage);
+    getUserData(user.id)
   };
+
+  const getUserData = async (id) => {
+    const userData = await GetUser(id)
+    setUserData(userData)
+  }
 
   const handleLogOut = () => {
     setUser(null);
@@ -49,6 +55,7 @@ const App = () => {
     <div className="App">
       <main>
         <Routes>
+      <Route path="/playlists" element={ <LibraryScreen user={user} />} />
           <Route path="/search" element={<SearchScreen />} />
           <Route path="/" element={<LoginScreen setUser={setUser} />} />
         </Routes>

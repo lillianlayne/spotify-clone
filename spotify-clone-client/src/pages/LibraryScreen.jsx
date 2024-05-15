@@ -4,39 +4,40 @@ import SongsList from "../components/SongsList";
 import AlbumsList from "../components/AlbumsList";
 import ArtistList from "../components/ArtistList";
 import PlaylistList from "../components/PlaylistList";
+import { GetUser } from "../services/UserServices";
 
 const LibraryScreen = ({ user }) => {
   const [view, setView] = useState("songs");
+  const [loaded, setLoaded] = useState(false)
+  const [userData, setUserData] = useState([]) 
 
   const switchView = (e) => {
     e.preventDefault();
-    setView("e.target.value");
+    setView(e.target.value);
   };
 
   let display = <SongsList user={user} />;
 
-  const setDisplay = () => {
-    switch (view) {
-      case "songs":
-        display = <SongsList user={user} />;
-        break;
-      case "albums":
-        display = <AlbumsList user={user} />;
-        break;
-      case "artists":
-        display = <ArtistList user={user} />;
-        break;
-      case "playlist":
-        display = <PlaylistList user={user} />;
-        break;
-      default:
-        display = <SongsList user={user} />;
-    }
-  };
+  switch (view) {
+    case "songs":
+      display = <SongsList />;
+      break;
+    case "albums":
+      display = <AlbumsList user={user} />;
+      break;
+    case "artists":
+      display = <ArtistList user={user} />;
+      break;
+    case "playlist":
+      display = <PlaylistList user={user} />;
+      break;
+    default:
+      display = <SongsList user={user} />;
+  }
 
-  useEffect(() => {
-    setDisplay();
-  }, [view]);
+
+
+  
 
   return (
     <div>

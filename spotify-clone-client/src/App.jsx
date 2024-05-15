@@ -19,13 +19,13 @@ const App = () => {
   const checkToken = async () => {
     const user = await CheckSession();
     setUser(user);
-    getUserData(user.id)
+    getUserData(user.id);
   };
 
   const getUserData = async (id) => {
-    const userData = await GetUser(id)
-    setUserData(userData)
-  }
+    const userData = await GetUser(id);
+    setUserData(userData);
+  };
 
   const handleLogOut = () => {
     setUser(null);
@@ -39,25 +39,20 @@ const App = () => {
     }
   }, []);
 
-  return user ? (
-    <div className="App bg-darkGradient">
-      <Nav handleLogOut={handleLogOut} />
+  return (
+    <div className="App">
+      {user ? <Nav handleLogout={handleLogOut} /> : null}
       <main>
         <Routes>
+          {user ? (
+            <Route path="/" element={<HomeScreen />} />
+          ) : (
+            <Route path="/" element={<LoginScreen setUser={user} />} />
+          )}
           <Route path="/" element={<HomeScreen />} />
           <Route path="/search" element={<SearchScreen />} />
-          <Route path="/playlists" element={ <LibraryScreen user={user} />} />
-          <Route path="/albums/:id" element={ <AlbumScreen user={user} />} />
-        </Routes>
-      </main>
-    </div>
-  ) : (
-    <div className="App">
-      <main>
-        <Routes>
-      <Route path="/playlists" element={ <LibraryScreen user={user} />} />
-          <Route path="/search" element={<SearchScreen />} />
-          <Route path="/" element={<LoginScreen setUser={setUser} />} />
+          <Route path="/playlists" element={<LibraryScreen user={user} />} />
+          <Route path="/albums/:id" element={<AlbumScreen user={user} />} />
         </Routes>
       </main>
     </div>

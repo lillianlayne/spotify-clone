@@ -1,14 +1,25 @@
 import React from 'react'
 
-const TrackDisplay = ({addTrack, track}) => {
+const TrackDisplay = ({addTrack, album}) => {
 
   return (
-    <form className='flex w-full items-center border-b border-stone-600 justify-between' onClick={addTrack}>
-      <p>
-        {track.name}
-      </p>
-      <button value={track.id} className='w-fit' type="button">+</button>
-    </form>
+    
+    <div className="flex flex-col py-4 gap-4 px-6 align-center justify-center mx-auto">
+      <h1 className="text-sm text-center font-semibold">
+        {album.name}
+      </h1>
+      <img src={album.images[0].url} alt="" />
+      <div className="flex justify-between w-full">
+        <div className="flex flex-col w-1/2">
+          <p className="text-base leading-tight">
+            {album.name}
+          </p>
+          <p className="text-sm mt-1">
+            {album.artists[0].name}
+          </p>
+        </div>
+      </div>
+    </div>
   )
 }
 

@@ -1,71 +1,47 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { getAlbumTracklist } from "../services/SpotifyApi/SpotifyApi";
-import {
-  getAuth,
-  getArtistId,
-  getAlbumsByArtist,
-} from "../services/SpotifyApi/SpotifyApi";
+import { getAlbumTracklist } from "../services/SpotifyApi/MusicServices";
 import TrackDisplay from "../components/TrackDisplay";
 import { addToLikedSongs } from "../services/UserServices";
 import { useUser } from "../context/userContext";
 
 const AlbumScreen = ({ user }) => {
   const { id } = useParams();
-  const [loaded, setLoaded] = useState(false);
-  const [albumInfo, setAlbumInfo] = useState([]);
-  const [albumArt, setAlbumArt] = useState([]);
-  const [trackId, setTrackId] = useState("");
+  const [songId, setSongId] = useState(null);
+  const [album, setAlbum] = useState();
 
-  const getInfo = async () => {
-    const fetchedData = await getAlbumTracklist(id);
-    try {
-      setAlbumArt(fetchedData.images);
-      setAlbumInfo(fetchedData);
-    } catch (error) {
-      console.log(error);
-    }
+  const fetchAlbum = async (songId) => {
+    const fetchedData = await getAlbumTracklist(songId);
+    setAlbum(fetchedData);
   };
 
-  const handleAdd = async (e) => {
-    e.preventDefault();
-    setTrackId(e.target.value);
-    try {
-      await addToLikedSongs(user.id, { content: e.target.value });
-    } catch (error) {
-      console.log(error);
-    }
+  const addTrack = async (e) => {
+    console.log(e.target);
   };
-
-  let image;
-  let trackList;
-
-  if (loaded) {
-    image = <img src={albumArt[0].url} alt="" loading="lazy" />;
-
-    trackList = albumInfo.tracks.items.map((track) => (
-      <TrackDisplay
-        key={track.id}
-        addTrack={(e) => handleAdd(e)}
-        track={track}
-      />
-    ));
-  }
 
   useEffect(() => {
-    getInfo();
-    if (albumInfo && albumArt.length) {
-      setLoaded(true);
-    }
+    setSongId(id);
   }, []);
 
+  useEffect(() => {
+    if (songId !== null) {
+      fetchAlbum(songId);
+    }
+  }, [songId]);
+
+
   return (
-    <div className="flex flex-col py-4 gap-4 px-6 align-center justify-start mx-auto">
-      <h6 className="text-center">{albumInfo.name}</h6>
-      {image}
-      <div className="mx-auto w-3/4"></div>
-      <div className="flex-col">{trackList}</div>
+    <div className="relative">
+      <div className="absolute blur-3xl -z-10 h-screen object-cover opacity-50">
+        {album ? 
+      <img className="h-full object-cover" src={album.images[0].url} alt="" /> : null  
+      }
+      </div>
+      {
+        album ? 
+        <TrackDisplay addTrack={addTrack} album={album}/> : null
+      }
     </div>
   );
 };

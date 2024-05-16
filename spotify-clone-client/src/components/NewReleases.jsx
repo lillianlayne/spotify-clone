@@ -21,14 +21,15 @@ const NewReleases = () => {
   }, []);
 
   return (
-    <div className="flex gap-2 flex-col items-start w-full">
-      <h1 className="text-sm">New Releases</h1>
+    <div className="container-overflow flex gap-2 flex-col items-start w-full">
+      <h1 className="text-base font-med">New Releases</h1>
       <div className="w-full flex gap-2 flex-row justify-start overflow-scroll">
         {newReleases.map((album) => (
-          <div key={album.id} onClick={(e) => handleClick(e)} className="flex w-1/3 flex-shrink-0 flex-col items-start">
+          <div key={album.id} onClick={(e) => handleClick(e)} className="flex w-2/5 relative card-bg border p-2 rounded-lg flex-shrink-0 flex-col border-stone-700 items-start overflow-hidden">
+            
             <Link to={`albums/${album.id}`}>
 
-            <div className="w-full object-cover">
+            <div className="object-cover ">
               <img src={album.images[0].url} alt="" />
             </div>
             <h5 className="mt-2 text-sm pr-2 leading-none">{album.name}</h5>

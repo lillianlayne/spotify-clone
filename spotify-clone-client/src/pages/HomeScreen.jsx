@@ -3,6 +3,7 @@ import { useUser } from "../context/userContext";
 import { getPopularPlaylists } from "../services/SpotifyApi/CategoryServices";
 import PlaylistCard from "../components/PlaylistCard";
 import NewReleases from "../components/NewReleases";
+import Search from "../components/Search";
 
 const HomeScreen = ({ user }) => {
   const { userData } = useUser();
@@ -17,8 +18,12 @@ const HomeScreen = ({ user }) => {
   }, []);
 
   return (
-    <div className=" h-screen pl-4 pt-4 pb-14">
-      <div className="flex gap-2 flex-col items-start w-full overflow-hidden">
+    <div className=" h-screen">
+      <div className="container bg-stone-900 pb-4 rounded-b-3xl border-b border-stone-700 mb-3">
+      <h1 className="text-3xl mt-3 font-medium">Discover</h1>
+      </div>
+          <NewReleases />
+      <div className="container-overflow flex gap-2 flex-col items-start">
         <h1 className="text-sm">Spotify Playlists</h1>
         <div className="div w-full flex justify-start overflow-scroll gap-2">
           {popularPlaylists.map((playlist) => (
@@ -31,8 +36,6 @@ const HomeScreen = ({ user }) => {
           ))}
         </div>
       </div>
-
-      <NewReleases />
     </div>
   );
 };

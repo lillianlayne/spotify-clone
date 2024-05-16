@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .btn-primary {
-    @apply text-center flex justify-center items-center h-14 w-full text-white;
-  }
-}
+
 
 @layer base {
+  :root {
+    --card-screen: linear-gradient(45deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .15) )
+  }
   html {
     font-family: basic-sans, sans-serif;
     font-weight: 300;
@@ -53,6 +52,30 @@
   }
 }
 
+
+
+@layer components {
+  .btn-primary {
+    @apply text-center flex justify-center items-center h-14 w-full text-white;
+  }
+  .container {
+    @apply px-6 py-2 w-full 
+  }
+
+  .container-overflow {
+    @apply pl-6 overflow-hidden py-2 scroll-smooth
+  }
+
+  .transform-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .card-bg {
+    background: var(--card-screen)
+  }
+}
 
 body {
   color: white;

@@ -32,7 +32,7 @@ const AlbumScreen = ({ user }) => {
 
   return (
     <div className="relative h-screen overflow-hidden">
-      <div className="absolute blur-2xl -z-10 h-screen object-cover opacity-40">
+      <div className="absolute blur-2xl -z-10 h-screen object-cover opacity-20">
         {album ? 
       <img className="h-full object-cover" src={album.images[0].url} alt="" /> : null  
       }

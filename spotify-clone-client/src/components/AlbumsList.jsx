@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { useUser } from '../context/userContext'
 import { getAlbumTracklist } from '../services/SpotifyApi/MusicServices'
+import { Link } from 'react-router-dom'
 
 const AlbumsList = () => {
   const {userData} = useUser()
@@ -39,8 +40,17 @@ const AlbumsList = () => {
   return (
     <div className='grid grid-cols-2 gap-2 p-4'>
      {albumData.map((album) => (
-      <div key={album.id}>
-        {album.name}
+      <div key={album.id} className='flex flex-col'>
+        <Link to={`/albums/${album.id}`}>
+
+        <img className='mb-2' src={album.images[0].url} alt="" />
+        <p className='text-sm leading-none'>
+          {album.name}
+        </p>
+        <p className="text-xs mt-1">
+          {album.artists[0].name}
+        </p>
+        </Link>
       </div>
      ))}
     </div>

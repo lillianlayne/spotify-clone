@@ -19,7 +19,9 @@ export const getArtistId = async (input) => {
     });
 
     return response.data.artists.items[0].id;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export const getAlbumsByArtist = async (input) => {
@@ -37,7 +39,9 @@ export const getAlbumsByArtist = async (input) => {
     });
 
     return response.data.items
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export const getAlbumTracklist = async (id) => {
@@ -53,7 +57,9 @@ export const getAlbumTracklist = async (id) => {
     });
 
     return response.data
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 
 }
 
@@ -70,6 +76,8 @@ export const getSingleTrack = async (id) => {
     });
 
     return response.data
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 
 }

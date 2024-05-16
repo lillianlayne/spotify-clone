@@ -2,20 +2,34 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getAlbumsByArtist, getArtistId, getAuth } from "../services/SpotifyApi/SpotifyApi";
+import { getSearchResults } from "../services/SpotifyApi/SearchServices";
+import TrackSearch from "./searchComponents/TrackSearch";
+import AlbumsSearch from "./searchComponents/AlbumsSearch";
+import ArtistSearch from "./searchComponents/ArtistSearch";
+import PlaylistSearch from "./searchComponents/PlaylistSearch";
 
 const Search = () => {
   let navigate = useNavigate()
   const [input, setInput] = useState("");
-  const [albums, setAlbums] = useState([])
+  const [loaded, setLoaded] = useState(false)
+  const [searchData, setSearchData] = useState(null)
 
   const search = async () => {
-   const fetchedAlbums = await getAlbumsByArtist(input);
-   setAlbums(fetchedAlbums)
+   const fetchedData = await getSearchResults(input);
+   setSearchData(fetchedData)
   }
 
   const getAlbumInfo = (e) => {
     navigate(`/albums/${e}`)
   }
+
+  useEffect(() => {
+    if (searchData) {
+      setLoaded(true)
+    } else {
+      setLoaded(false)
+    }
+  }, [searchData])
 
   return (
     <div className="p-4">
@@ -30,14 +44,8 @@ const Search = () => {
         </button>
       </div>
       <div className="flex flex-col">
-        {
-          albums.map((album) => (
-            <button key={album.id} value={album.id} onClick={e => getAlbumInfo(e.target.value)} className="py-4">
-             
-                {album.name}
-            </button>
-          ))
-        }
+          { loaded ? < ArtistSearch data={ searchData.artists[0]} /> : <div></div> }
+          { loaded ? < PlaylistSearch data={ searchData.playlists} /> : <div></div> }
       </div>
     </div>
   );

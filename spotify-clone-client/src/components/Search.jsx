@@ -57,11 +57,13 @@ const Search = ({setSearch}) => {
   }, [click])
 
   return (
-    <div className="w-full border-b border-stone-600 rounded-b-3xl container pt-5 pb-4 mb-4 bg-stone-900">
-      <div className="w-full flex justify-between items-center border border-stone-700 py-3 px-4 bg-stone-800 rounded-full overflow-hidden">
+    <div className="w-full border-b border-stone-600 rounded-b-3xl pt-5 pb-4 mb-4 bg-stone-900">
+      <div className="container flex justify-between items-center border border-stone-700 py-3 px-4 bg-stone-800 rounded-full overflow-hidden">
         <input
+        className="w-full"
           type="text"
           placeholder="search"
+          value={input}
           onKeyDown={handleKeyDown}
           onChange={(e) => handleChange(e)}
         />
@@ -70,8 +72,9 @@ const Search = ({setSearch}) => {
         </button>
       </div>
       <div className="flex gap-6 mt-6 flex-col">
-        {loaded ? <ArtistSearch data={searchData.artists[0]} /> : <div className="h-[0px] hidden"></div>}
-        {loaded ? <PlaylistSearch data={searchData.playlists} /> : <div className="h-[0px] hidden"></div>}
+        {searchData ? <ArtistSearch data={searchData.artists[0]} /> : <div className="h-[0px] hidden"></div>}
+        {searchData ? <PlaylistSearch data={searchData.playlists} /> : <div className="h-[0px] hidden"></div>}
+        {searchData ? <AlbumsSearch data={searchData.albums} /> : <div className="h-[0px] hidden"></div>}
       </div>
     </div>
   );

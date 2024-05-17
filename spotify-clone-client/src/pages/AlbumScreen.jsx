@@ -7,7 +7,6 @@ import { addToLikedList } from "../services/UserServices";
 import { useUser } from "../context/userContext";
 
 const AlbumScreen = ({ user }) => {
-
   const { id } = useParams();
   const [songId, setSongId] = useState(null);
   const [album, setAlbum] = useState();
@@ -16,8 +15,6 @@ const AlbumScreen = ({ user }) => {
     const fetchedData = await getAlbumTracklist(songId);
     setAlbum(fetchedData);
   };
-
-
 
   useEffect(() => {
     setSongId(id);
@@ -29,19 +26,19 @@ const AlbumScreen = ({ user }) => {
     }
   }, [songId]);
 
-
   return (
     <div className="relative h-screen overflow-hidden">
       <div className="absolute blur-2xl -z-10 h-screen object-cover opacity-20">
-        {album ? 
-      <img className="h-full object-cover" src={album.images[0].url} alt="" /> : null  
-    }
+        {album ? (
+          <img
+            className="h-full object-cover"
+            src={album.images[0].url}
+            alt=""
+          />
+        ) : null}
       </div>
       <div className="absolute h-full overflow-scroll pb-20">
-      {
-        album ? 
-        <TrackDisplay album={album}/> : null
-      }
+        {album ? <TrackDisplay album={album} /> : null}
       </div>
     </div>
   );

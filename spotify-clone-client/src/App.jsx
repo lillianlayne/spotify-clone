@@ -16,6 +16,7 @@ import { GetUser } from "./services/UserServices";
 import Register from "./pages/Register";
 import ArtistScreen from "./pages/ArtistScreen";
 import { ClickProvider } from "./context/clickContext";
+import PlayingScreen from "./pages/PlayingScreen";
 
 const App = () => {
   let navigate = useNavigate();
@@ -70,6 +71,7 @@ const App = () => {
             <Route path="/playlist/:id" element={<PlaylistDetailScreen />} />
             <Route path="/register" element={<Register />} />
             <Route path="/artist/:id" element={<ArtistScreen />} />
+            <Route path="/playing/:id" element={<PlayingScreen />} />
           </Routes>
       </main>
     </div>

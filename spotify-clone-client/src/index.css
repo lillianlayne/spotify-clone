@@ -114,8 +114,12 @@
   }
 
   .raised {
-    box-shadow:  13px 13px 17px #0d0c0b,
-             -13px -13px 17px #2b2723;
+    box-shadow:  8px 8px 17px #0d0c0b,
+             -8px -8px 17px #2b2723;
+  }
+  .raised-inset {
+    box-shadow:  5px 5px 10px #1d1a18 inset,
+             -7px -7px 10px #383430 inset;
   }
 }
 
@@ -125,5 +129,5 @@ body {
 }
 
 .first-card:nth-child(1) {
-  margin-left: 16px;
+  margin-left: 24px;
 }

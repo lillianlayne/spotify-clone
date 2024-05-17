@@ -14,7 +14,7 @@ const ArtistSearch = ({data}) => {
 
  
   return (
-   <div className="">
+   <div className="container">
     
       <ArtistCard id={data.id} action={(e) => handleClick(e)} name={data.name} image={data.images} type={data.type}/>
     

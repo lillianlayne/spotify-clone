@@ -7,39 +7,40 @@ import PlaylistList from "../components/LibraryComponents/PlaylistList";
 import { useUser } from '../context/userContext'
 
 
-const LibraryScreen = ({ user }) => {
-  const {userData} = useUser()
+const LibraryScreen = () => {
+  const {userData, setUserData} = useUser()
   const [view, setView] = useState("albums");
   const [loaded, setLoaded] = useState(false)
-  const [userObj, setUserObj] = useState() 
+  const [count, setCount] = useState(0)
 
   const switchView = (e) => {
     e.preventDefault();
     setView(e.target.value);
+    setCount(prev => prev + 1)
   };
 
-  let display = <SongsList user={user} />;
+  let display = <SongsList />;
 
   switch (view) {
     case "songs":
       display = <SongsList />;
       break;
     case "albums":
-      display = <AlbumsList user={userData} />;
+      display = <AlbumsList />;
       break;
     case "artists":
-      display = <ArtistList user={user} />;
+      display = <ArtistList />;
       break;
     case "playlist":
-      display = <PlaylistList user={user} />;
+      display = <PlaylistList />;
       break;
     default:
-      display = <SongsList user={user} />;
+      display = <SongsList />;
   }
 
 
 useEffect(() => {
-  setUserObj(userData)
+  
 }, []);
   
 
@@ -84,7 +85,8 @@ useEffect(() => {
           </button>
         </div>
       </div>
-      <div className="mt-8">{display}</div>
+
+      <div key={count} className="mt-8">{display}</div>
     </div>
   );
 };

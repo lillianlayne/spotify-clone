@@ -1,3 +1,14 @@
 .App {
   height: 100vh;
 }
+
+input {
+  background: none;
+  border-radius: none;
+  outline: none;
+  color: white;
+}
+
+input::placeholder {
+  color: white
+}

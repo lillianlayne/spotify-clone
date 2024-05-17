@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../context/userContext";
 import { SignInUser } from "../services/Auth";
 
 const LoginScreen = ({ setUser }) => {
@@ -10,8 +9,9 @@ const LoginScreen = ({ setUser }) => {
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
+
   const login = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const loginInfo = {
         email: formValues.email,
@@ -23,41 +23,43 @@ const LoginScreen = ({ setUser }) => {
       setUser(res);
       navigate("/");
     } catch (error) {
-      console.error("Error signing in:", error);
+      console.log(error);
     }
   };
+
   return (
-    <div className="flex-col justify-center items-center h-screen px-4">
-      <h1>Welcome Back</h1>
-      <form
-        className="flex flex-col h-screen justify-center gap-2 w-full"
-        onSubmit={login}
-      >
-        <input
-          className="text-stone-900 w-full px-2 h-14"
-          onChange={handleChange}
-          name="email"
-          type="email"
-          placeholder="Your Email"
-          value={formValues.email}
-          required
-        />
-        <input
-          className="text-stone-900 w-full px-2 h-14"
-          onChange={handleChange}
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formValues.password}
-          required
-        />
-        <button type="submit" onSubmit={login} className="btn-primary bg-slate-500">
-          Sign In
+    <div className="flex container h-screen items-start px-10 justify-center flex-col">
+      <h1 className="text-3xl leading-none w-full font-bold">
+        Log into <br /> your account
+      </h1>
+      <form onSubmit={login} className="w-full flex mt-12 flex-col gap-2">
+        <div className="border-b border-stone-500 py-4">
+          <input
+            onChange={handleChange}
+            name="email"
+            type="email"
+            placeholder="Your Email"
+            value={formValues.email}
+            required
+          />
+        </div>
+        <div className="border-b border-stone-500 py-4">
+          <input
+            onChange={handleChange}
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={formValues.password}
+            required
+          />
+        </div>
+        <button className="btn-primary bg-lime-700 font-medium rounded-full mt-8" type="submit" onSubmit={login}>
+          Log In
         </button>
       </form>
-      <Link to="/register">
-        <button className="btn-primary mt-2 bg-slate-700">
-          Create Account
+      <Link className="w-full" to="/register">
+      <button className="btn-primary border w-full text-lime-700 border-lime-700 font-medium rounded-full mt-4" type="submit" onSubmit={login}>
+          Sign Up
         </button>
       </Link>
     </div>

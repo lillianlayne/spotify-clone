@@ -8,24 +8,23 @@ const ArtistList = () => {
   const { userData } = useUser();
   const [loaded, setLoaded] = useState(false);
   const [artists, setArtists] = useState([]);
-  const prevLikedArtistRef = useRef([])
+  const prevLikedArtistRef = useRef([]);
 
   const fetchArtistData = async (data) => {
     data.forEach((artist) => {
-      getArtistData(artist.content)
-    })
-  }
+      getArtistData(artist.content);
+    });
+  };
 
   const getArtistData = async (id) => {
     const fetchedData = await getArtistInfo(id);
-    setArtists((prev) => [...prev, fetchedData])
-  }
+    setArtists((prev) => [...prev, fetchedData]);
+  };
 
   const setStateData = (data) => {
     const dataSet = fetchArtistData(data.likedArtists);
-    console.log(dataSet)
-  }
-
+    console.log(dataSet);
+  };
 
   useEffect(() => {
     if (userData) {
@@ -33,24 +32,25 @@ const ArtistList = () => {
       const prevLikedArtist = prevLikedArtistRef.current;
 
       if (JSON.stringify(likedArtist) !== JSON.stringify(prevLikedArtist)) {
-        fetchArtistData(likedArtist)
-        prevLikedArtistRef.current = likedArtist
+        fetchArtistData(likedArtist);
+        prevLikedArtistRef.current = likedArtist;
       }
     }
-  }, [])
+  }, []);
 
   return (
     <div className="grid grid-cols-4 gap-4">
       {artists.map((artist, idx) => (
-        <div className="" key={idx}>
+        <div key={idx}>
           <Link to={`/artist/${artist.id}`}>
-            <div flex flex-col items-center justify-start gap-2>
-
-
-          <img className="rounded-full" src={artist.images[0].url} alt="" loading="lazy"/>
-          <div className="subtitle">
-            {artist.name}
-          </div>
+            <div className="flex flex-col items-center justify-start gap-2">
+              <img
+                className="rounded-full"
+                src={artist.images[0].url}
+                alt=""
+                loading="lazy"
+              />
+              <div className="subtitle">{artist.name}</div>
             </div>
           </Link>
         </div>

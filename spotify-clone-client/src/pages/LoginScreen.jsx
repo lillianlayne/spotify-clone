@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SignInUser } from "../services/Auth";
+import { useUser } from "../context/userContext";
+import { GetUser } from "../services/UserServices";
 
 const LoginScreen = ({ setUser }) => {
   let navigate = useNavigate();
@@ -53,12 +55,20 @@ const LoginScreen = ({ setUser }) => {
             required
           />
         </div>
-        <button className="btn-primary bg-lime-700 font-medium rounded-full mt-8" type="submit" onSubmit={login}>
+        <button
+          className="btn-primary bg-lime-700 font-medium rounded-full mt-8"
+          type="submit"
+          onSubmit={login}
+        >
           Log In
         </button>
       </form>
       <Link className="w-full" to="/register">
-      <button className="btn-primary border w-full text-lime-700 border-lime-700 font-medium rounded-full mt-4" type="submit" onSubmit={login}>
+        <button
+          className="btn-primary border w-full text-lime-700 border-lime-700 font-medium rounded-full mt-4"
+          type="submit"
+          onSubmit={login}
+        >
           Sign Up
         </button>
       </Link>

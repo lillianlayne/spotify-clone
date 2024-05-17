@@ -5,18 +5,19 @@ import AlbumsList from "../components/LibraryComponents/AlbumsList";
 import ArtistList from "../components/LibraryComponents/ArtistList";
 import PlaylistList from "../components/LibraryComponents/PlaylistList";
 import { useUser } from '../context/userContext'
+import { useClick } from "../context/clickContext";
 
 
 const LibraryScreen = () => {
   const {userData, setUserData} = useUser()
-  const [view, setView] = useState("albums");
+  const {click, setClick} = useClick()
+  const [view, setView] = useState("");
   const [loaded, setLoaded] = useState(false)
   const [count, setCount] = useState(0)
 
   const switchView = (e) => {
     e.preventDefault();
     setView(e.target.value);
-    setCount(prev => prev + 1)
   };
 
   let display = <SongsList />;
@@ -86,7 +87,7 @@ useEffect(() => {
         </div>
       </div>
 
-      <div key={count} className="mt-8">{display}</div>
+      <div key={click} className="mt-8">{display}</div>
     </div>
   );
 };

@@ -5,7 +5,6 @@ import { getAlbumTracklist } from "../services/SpotifyApi/MusicServices";
 import TrackDisplay from "../components/TrackDisplay";
 import { addToLikedList } from "../services/UserServices";
 import { useUser } from "../context/userContext";
-import Drawer from "../components/Drawer";
 
 const AlbumScreen = ({ user }) => {
 

@@ -3,9 +3,11 @@ import Icons from "./Icons";
 import { useUser } from "../context/userContext";
 import { addToLikedList, removeFromLikedList } from "../services/UserServices";
 import { GetUser } from "../services/UserServices";
+import { useClick } from "../context/clickContext";
 
 const Favorite = ({ type, itemId }) => {
   const { userData, setUserData } = useUser();
+  const {click, setClick} = useClick()
   const [liked, setLiked] = useState(false);
 
   const resetUserData = async (id) => {
@@ -33,6 +35,7 @@ const Favorite = ({ type, itemId }) => {
     try {
       addToLikedList(type, userData._id, { content: e.target.value });
       setLiked(true);
+      setClick(prev => prev + 1)
     } catch (error) {
       console.log(error);
     }
@@ -44,6 +47,7 @@ const Favorite = ({ type, itemId }) => {
     try {
       removeFromLikedList(type, userData._id, { content: e.target.value });
       setLiked(false);
+      setClick(prev => prev + 1)
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +58,6 @@ const Favorite = ({ type, itemId }) => {
   }, []);
 
   useEffect(() => {
-    // checkLiked(type, itemId)
     resetUserData(userData._id)
   }, [liked])
 

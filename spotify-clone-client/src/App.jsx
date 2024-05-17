@@ -15,57 +15,62 @@ import PlaylistDetailScreen from "./pages/PlaylistDetailScreen";
 import { GetUser } from "./services/UserServices";
 import Register from "./pages/Register";
 import ArtistScreen from "./pages/ArtistScreen";
+import { ClickProvider } from "./context/clickContext";
 
 const App = () => {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const { setUserData } = useUser();
   const [user, setUser] = useState(null);
 
   const checkToken = async () => {
     const user = await CheckSession();
     setUser(user);
-    getUserData(user.id);
-    navigate('/')
+    navigate("/");
   };
 
-  const getUserData = async (id) => {
-    const userData = await GetUser(id);
-    setUserData(userData);
+  const fetchUserData = async (id) => {
+    const fetchedData = await GetUser(id);
+    setUserData(fetchedData);
   };
 
   const handleLogOut = (e) => {
     localStorage.clear();
     setUser(null);
     setUserData(null);
-    navigate("/signin")
+    navigate("/signin");
   };
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       checkToken();
     } else {
-      navigate('/signin')
+      navigate("/signin");
     }
   }, []);
 
-
+  useEffect(() => {
+    if (user) {
+      fetchUserData(user.id);
+    } else {
+      setUserData(null);
+    }
+  }, [user]);
 
   return (
-    <div className="App bg-stone-900 h-screen">
+    <div className="App bg-stone-900">
       {user ? <Nav handleLogOut={handleLogOut} /> : null}
       <main>
-        <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/albums/:id" element={<AlbumScreen user={user} />} />
-          <Route path="/signin" element={<LoginScreen setUser={setUser} />} />
-          <Route path="/search" element={<SearchScreen />} />
-          <Route path="/library" element={<LibraryScreen user={user} />} />
-          <Route path="/playlist/:id" element={<PlaylistDetailScreen />}/>
-          <Route path="/register" element={<Register />}/>
-          <Route path="/artist/:id" element={<ArtistScreen />}/>
-        </Routes>
+          <Routes>
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/albums/:id" element={<AlbumScreen user={user} />} />
+            <Route path="/signin" element={<LoginScreen setUser={setUser} />} />
+            <Route path="/search" element={<SearchScreen />} />
+            <Route path="/library" element={<LibraryScreen user={user} />} />
+            <Route path="/playlist/:id" element={<PlaylistDetailScreen />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/artist/:id" element={<ArtistScreen />} />
+          </Routes>
       </main>
     </div>
   );

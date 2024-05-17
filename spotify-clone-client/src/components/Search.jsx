@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {
-  getAlbumsByArtist,
-  getArtistId,
-  getAuth,
-} from "../services/SpotifyApi/SpotifyApi";
 import { getSearchResults } from "../services/SpotifyApi/SearchServices";
 import TrackSearch from "./searchComponents/TrackSearch";
 import AlbumsSearch from "./searchComponents/AlbumsSearch";

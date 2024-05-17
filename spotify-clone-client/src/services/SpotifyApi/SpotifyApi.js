@@ -28,73 +28,73 @@ export const getAuth = async () => {
   return token;
 };
 
-export const getArtistId = async (input) => {
-  const token = await getAuth();
-  console.log(token)
-  const url = `https://api.spotify.com/v1/search?q=${input}&type=artist`;
+// export const getArtistId = async (input) => {
+//   const token = await getAuth();
+//   console.log(token)
+//   const url = `https://api.spotify.com/v1/search?q=${input}&type=artist`;
 
-  try {
-    const response = await axios.get(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+//   try {
+//     const response = await axios.get(url, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
 
-    return response.data.artists.items[0].id;
-  } catch (error) {}
-};
+//     return response.data.artists.items[0].id;
+//   } catch (error) {}
+// };
 
-export const getAlbumsByArtist = async (input) => {
-  const token = await getAuth();
-  const artistId = await getArtistId(input)
-  console.log(token)
-  const url = `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album&market=US&limit=50`;
+// export const getAlbumsByArtist = async (input) => {
+//   const token = await getAuth();
+//   const artistId = await getArtistId(input)
+//   console.log(token)
+//   const url = `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album&market=US&limit=50`;
 
-  try {
-    const response = await axios.get(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+//   try {
+//     const response = await axios.get(url, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
 
-    return response.data.items
-  } catch (error) {}
-}
+//     return response.data.items
+//   } catch (error) {}
+// }
 
-export const getAlbumTracklist = async (id) => {
-  const token = await getAuth();
-  const url = `https://api.spotify.com/v1/albums/${id}`;
+// export const getAlbumTracklist = async (id) => {
+//   const token = await getAuth();
+//   const url = `https://api.spotify.com/v1/albums/${id}`;
 
-  try {
-    const response = await axios.get(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+//   try {
+//     const response = await axios.get(url, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
 
-    return response.data
-  } catch (error) {}
+//     return response.data
+//   } catch (error) {}
 
-}
+// }
 
-export const getSingleTrack = async (id) => {
-  const token = await getAuth();
-  const url = `https://api.spotify.com/v1/tracks/${id}`;
+// export const getSingleTrack = async (id) => {
+//   const token = await getAuth();
+//   const url = `https://api.spotify.com/v1/tracks/${id}`;
 
-  try {
-    const response = await axios.get(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+//   try {
+//     const response = await axios.get(url, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
 
-    return response.data
-  } catch (error) {}
+//     return response.data
+//   } catch (error) {}
 
-}
+// }
 
 

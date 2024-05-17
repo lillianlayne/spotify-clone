@@ -17,7 +17,7 @@ export const getPopularPlaylists = async () => {
       },
     });
 
-    return response.data
+    return response.data.playlists.items
   } catch (error) {
     console.log(error)
   }
@@ -25,7 +25,7 @@ export const getPopularPlaylists = async () => {
 
 export const getNewReleases = async () => {
   const token = await getAuth()
-  const url = 'https://api.spotify.com/v1/browse/new-releases'
+  const url = 'https://api.spotify.com/v1/browse/new-releases?limit=10'
 
   try {
     const response = await axios.get(url, {
@@ -35,7 +35,7 @@ export const getNewReleases = async () => {
       },
     });
 
-    return response.data
+    return response.data.albums.items
   } catch (error) {
     console.log(error)
   }

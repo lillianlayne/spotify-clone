@@ -17,6 +17,15 @@ export const addToLikedList = async (listType, userId, id) => {
     console.log(error)
     throw error
   }
+}
 
-
+export const removeFromLikedList = async (listType, userId, id) => {
+  try{
+    const res = await Client.delete(`/user/${userId}/${listType}`, id);
+    return res.data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+  
 }

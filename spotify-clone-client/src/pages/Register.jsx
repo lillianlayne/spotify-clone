@@ -18,7 +18,6 @@ const Register = () => {
   };
   
   const handleSubmit = async (e) => {
-    e.preventDefault();
     await RegisterUser({
       name: formValues.name,
       email: formValues.email,
@@ -36,35 +35,35 @@ const Register = () => {
   };
 
   return (
-    <div className="signin col">
-      <div className="card-overlay centered">
+    <div className="container flex items-center justify-center h-screen">
+      <div className="flex flex-col w-full">
         <form className="col" onSubmit={handleSubmit}>
           <div className="input-wrapper">
-            <label htmlFor="name">Name</label>
             <input
+            className="w-full p-4 mb-4 text-stone-100 rounded-full border border-stone-700 bg-stone-800"
               onChange={handleChange}
               name="name"
               type="text"
-              placeholder="John Smith"
+              placeholder="Name"
               value={formValues.name}
               required
             />
           </div>
           <div className="input-wrapper">
-            <label htmlFor="email">Email</label>
             <input
+            className="w-full p-4 mb-4 text-stone-100 rounded-full border border-stone-700 bg-stone-800"
               onChange={handleChange}
               name="email"
               type="email"
-              placeholder="example@example.com"
+              placeholder="Your Email"
               value={formValues.email}
               required
             />
           </div>
 
           <div className="input-wrapper">
-            <label htmlFor="password">Password</label>
             <input
+            className="w-full p-4 mb-4 text-stone-100 rounded-full border border-stone-700 bg-stone-800"
               onChange={handleChange}
               type="password"
               name="password"
@@ -73,8 +72,8 @@ const Register = () => {
             />
           </div>
           <div className="input-wrapper">
-            <label htmlFor="confirmPassword">Confirm Password</label>
             <input
+            className="w-full p-4 mb-4 text-stone-100 rounded-full border border-stone-700 bg-stone-800"
               onChange={handleChange}
               type="password"
               name="confirmPassword"
@@ -82,7 +81,7 @@ const Register = () => {
               required
             />
           </div>
-          <button
+          <button className="btn-primary bg-orange-600 rounded-full" type="submit" onSubmit={handleSubmit}
             disabled={
               !formValues.email ||
               (!formValues.password &&

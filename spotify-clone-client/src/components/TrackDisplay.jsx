@@ -3,6 +3,7 @@ import AlbumTracks from "./AlbumTracks";
 import Icons from "./Icons";
 import { useUser } from "../context/userContext";
 import { addToLikedList } from "../services/UserServices";
+import Favorite from "./Favorite";
 
 const TrackDisplay = ({ addTrack, album }) => {
   const {userData} = useUser()
@@ -27,9 +28,7 @@ const TrackDisplay = ({ addTrack, album }) => {
           <p className="text-base leading-tight">{album.name}</p>
           <p className="text-sm mt-1">{album.artists[0].name}</p>
         </div>
-        <button value={album.id} onClick={(e) => addAlbum(e)}>
-          <Icons type="heart" stroke="white" fill="none" />
-        </button>
+        <Favorite type="albums" itemId={album.id}/>
       </div>
       <div className="flex flex-col gap-8 border-t border-stone-500 pt-4">
         {album.tracks.items.map((track) => (

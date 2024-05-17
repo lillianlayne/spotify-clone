@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Icons from "../components/Icons";
-import SongsList from "../components/SongsList";
-import AlbumsList from "../components/AlbumsList";
-import ArtistList from "../components/ArtistList";
-import PlaylistList from "../components/PlaylistList";
-import { GetUser } from "../services/UserServices";
+import SongsList from "../components/LibraryComponents/SongsList";
+import AlbumsList from "../components/LibraryComponents/AlbumsList";
+import ArtistList from "../components/LibraryComponents/ArtistList";
+import PlaylistList from "../components/LibraryComponents/PlaylistList";
 import { useUser } from '../context/userContext'
 
 
@@ -45,9 +44,9 @@ useEffect(() => {
   
 
   return (
-    <div>
-      <div className="p-4 w-full bg-[#00000045]">
-        <div className="flex justify-between items-baseline w-full">
+    <div className="container">
+      <div className="w-full">
+        <div className="flex justify-between items-baseline">
           <h1 className="text-xl font-bold">Your Library</h1>
           <div className="flex gap-4 items-baseline">
             <Icons type="search" stroke="white" fill="none" />
@@ -85,7 +84,7 @@ useEffect(() => {
           </button>
         </div>
       </div>
-      <div>{display}</div>
+      <div className="mt-8">{display}</div>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../context/userContext";
 import { SignInUser } from "../services/Auth";
 
-const LoginScreen = (props) => {
+const LoginScreen = ({ setUser }) => {
   let navigate = useNavigate();
   const [formValues, setFormValues] = useState({ email: "", password: "" });
 
@@ -11,7 +11,7 @@ const LoginScreen = (props) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
   const login = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const loginInfo = {
         email: formValues.email,
@@ -20,7 +20,7 @@ const LoginScreen = (props) => {
 
       const res = await SignInUser(loginInfo);
 
-      props.setUser(res);
+      setUser(res);
       navigate("/");
     } catch (error) {
       console.error("Error signing in:", error);
@@ -29,7 +29,10 @@ const LoginScreen = (props) => {
   return (
     <div className="flex-col justify-center items-center h-screen px-4">
       <h1>Welcome Back</h1>
-      <form className="flex flex-col h-screen justify-center gap-2 w-full" onSubmit={login}>
+      <form
+        className="flex flex-col h-screen justify-center gap-2 w-full"
+        onSubmit={login}
+      >
         <input
           className="text-stone-900 w-full px-2 h-14"
           onChange={handleChange}
@@ -48,16 +51,15 @@ const LoginScreen = (props) => {
           value={formValues.password}
           required
         />
-        <button
-          className="btn-primary bg-slate-500"
-          disabled={!formValues.email || !formValues.password}
-        >
+        <button type="submit" onSubmit={login} className="btn-primary bg-slate-500">
           Sign In
         </button>
       </form>
-      <Link to="/auth/register">
-          <button className="btn-primary mt-2 bg-slate-700">Create Account</button>
-        </Link>
+      <Link to="/register">
+        <button className="btn-primary mt-2 bg-slate-700">
+          Create Account
+        </button>
+      </Link>
     </div>
   );
 };

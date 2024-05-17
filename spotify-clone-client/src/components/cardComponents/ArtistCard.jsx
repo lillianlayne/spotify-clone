@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import FollowButton from "../FollowButton";
 
 const ArtistCard = ({ image, name, action, id, type }) => {
+  const [active, activate] = useState(false)
+  
+
   return (
     <div className="flex w-full items-center gap-2">
       <div className="rounded-full h-14 aspect-square overflow-hidden">
@@ -14,7 +18,7 @@ const ArtistCard = ({ image, name, action, id, type }) => {
         <p className="text-xs">{type}</p>
       </div>
 
-      <button className="py-1 px-2 text-sm rounded-full border border-stone-300" onClick={action} value={id}>Follow</button>
+      <FollowButton action="artists" value={id}/>
       </div>
     </div>
   );

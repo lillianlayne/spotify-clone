@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getSingleTrack } from "../services/SpotifyApi/SpotifyApi";
-import TrackDisplay from "./TrackDisplay";
-import { useUser } from "../context/userContext";
+import { getSingleTrack } from "../../services/SpotifyApi/MusicServices";
+import TrackDisplay from "../TrackDisplay";
+import { useUser } from "../../context/userContext";
 
 const SongsList = () => {
   const [songs, setSongs] = useState([]);
@@ -42,7 +42,7 @@ const SongsList = () => {
     return `${minutes}:${formatted}`;
   };
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-4">
       {
         songs.map((song) => (
           <div className="flex gap-4" key={song.id}>

@@ -5,6 +5,7 @@ import { getAlbumTracklist } from "../services/SpotifyApi/MusicServices";
 import TrackDisplay from "../components/TrackDisplay";
 import { addToLikedList } from "../services/UserServices";
 import { useUser } from "../context/userContext";
+import Drawer from "../components/Drawer";
 
 const AlbumScreen = ({ user }) => {
 
@@ -35,7 +36,7 @@ const AlbumScreen = ({ user }) => {
       <div className="absolute blur-2xl -z-10 h-screen object-cover opacity-20">
         {album ? 
       <img className="h-full object-cover" src={album.images[0].url} alt="" /> : null  
-      }
+    }
       </div>
       <div className="absolute h-full overflow-scroll pb-20">
       {

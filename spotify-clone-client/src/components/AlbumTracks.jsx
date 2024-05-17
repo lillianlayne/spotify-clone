@@ -3,6 +3,7 @@ import { useUser } from '../context/userContext'
 import { useEffect, useState } from 'react';
 import { addToLikedList } from '../services/UserServices';
 import Icons from './Icons';
+import Favorite from './Favorite';
 
 const AlbumTracks = ({track}) => {
   const {userData} = useUser();
@@ -23,6 +24,7 @@ const AlbumTracks = ({track}) => {
   }, [])
   return (
     <div className='w-full flex justify-between items-center'>
+
         <div className="flex flex-col">
         <p className="text-sm font-normal">
           {track.name}
@@ -38,7 +40,6 @@ const AlbumTracks = ({track}) => {
           }
           </div>
         </div>
-      
         <button value={track.id} onClick={(e) => handleClick(e)}>
           <Icons type="add" stroke="white" fill="none"/>
         </button>

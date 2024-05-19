@@ -1,83 +1,93 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getSingleTrack } from '../services/SpotifyApi/MusicServices'
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getSingleTrack } from "../services/SpotifyApi/MusicServices";
+import Icons from "../components/Icons";
+import Favorite from "../components/Favorite";
+import PlaybackControls from "../components/cardComponents/PlaybackControls";
 
 const PlayingScreen = () => {
-  const {id} = useParams();
-  const [info, setInfo] = useState(null)
-  const [artists, setArtists] = useState([])
+  const { id } = useParams();
+  const [info, setInfo] = useState(null);
+  const [artists, setArtists] = useState([]);
+  const [image, setImage] = useState([]);
 
   const fetchTrack = async (trackId) => {
     const fetchedData = await getSingleTrack(trackId);
-    artistString(fetchedData.artists)
-    setInfo(fetchedData)
-  }
+    artistString(fetchedData.artists);
+    setImage(fetchedData.image);
+    setInfo(fetchedData);
+  };
 
   const artistString = (array) => {
     const result = array.map((item) => {
-      return item.name
-    })
+      return item.name;
+    });
 
-    setArtists(result)
-  }
+    setArtists(result);
+  };
 
   const artistDisplay = (array) => {
-    return array.join(', ')
-  }
+    return array.join(", ");
+  };
+
+  const getTime = (ms) => {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    const formatted = seconds < 10 ? `0${seconds}` : seconds;
+
+    return `${minutes}:${formatted}`;
+  };
 
   useEffect(() => {
-    fetchTrack(id)
-  }, [])
-
+    fetchTrack(id);
+  }, []);
 
   return info ? (
-    <div className="w-full h-full absolute transform-center bg-stone-900 z-20">
-
-    <div className='container flex gap-8 flex-col pb-24'>
-      <div className="flex w-full relative justify-between">
-        <div>...</div>
-        <div className="absolute subtitle text-stone-600 transform-center">
-          Now Playing
-        </div>
-        <div>...</div>
+    <div className="h-screen w-screen z-20 relative">
+      <div className="absolute transform-center bg-stone-900 w-full object-cover h-full">
+        <img
+          src={image[0].url}
+          className="w-full h-full opacity-25 object-cover"
+          alt=""
+        />
       </div>
-        <div className="size-72 mx-auto object-cover overflow-hidden border-8 border-stone-950 rounded-2xl raised">
-          <img src={info.album.images[0].url} className='w-full object-cover' alt="" />
+      <div
+        className="relative w-full backdrop-blur-lg
+       h-full flex flex-col"
+      >
+        <div className="flex mt-4 justify-between container">
+          <Icons type="back" fill="currentColor" stroke="none" size="size-8" />
+          <div>•••</div>
         </div>
-        <div className="div">
-          <p className="text text-center text-lg">
-            {info.name}
-          </p>
-          <p className="subtitle text-center text-stone-600">
-            {artistDisplay(artists)}
-          </p>
+        <div className="container overflow-hidden w-full mx-auto mt-4">
+          <img src={image[0].url} className="rounded-lg" alt="" />
         </div>
-
-        <div className="size-80 mt-8 rounded-full items-center justify-center bg-stone-950 flex flex-col raised mx-auto">
-          <div className="flex flex-row w-full h-full justify-center items-center">
-            play
+        <div className="container flex mt-3 justify-between items-start">
+          <div className="flex flex-col">
+            <p className="title">{info.name}</p>
+            <p className="caption mt-1">{artistDisplay(artists)}</p>
           </div>
-          <div className="flex flex-row w-full justify-between items-center">
-            <div className="div">
-              back
-            </div>
-            <div className="h-28 w-28 rounded-full raised-inset bg-stone-800">
-              
-                </div>
-            <div className="div">
-              fwd
-            </div>
+          <div>
+            <Favorite type="songs" itemId={info.id} />
           </div>
-          <div className="flex flex-row w-full h-full justify-center items-center">
-            shuffle
-          </div>
-          
         </div>
-    </div>
+        <div className="container flex flex-col gap-2">
+          <div className="w-full h-1 bg-stone-600 rounded-lg"></div>
+          <div className="w-full flex text-stone-400 justify-between">
+            <p className="caption font-medium">0:00</p>
+            <p className="caption font-medium">{getTime(info.duration)}</p>
+          </div>
+        </div>
+        <div className="container">
+          <PlaybackControls />
+        </div>
+      </div>
     </div>
   ) : (
     <div>loading</div>
-  )
-}
+  );
+};
 
-export default PlayingScreen
+export default PlayingScreen;

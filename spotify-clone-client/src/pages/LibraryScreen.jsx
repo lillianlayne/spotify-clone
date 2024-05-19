@@ -12,15 +12,14 @@ const LibraryScreen = () => {
   const {userData, setUserData} = useUser()
   const {click, setClick} = useClick()
   const [view, setView] = useState("");
-  const [loaded, setLoaded] = useState(false)
-  const [count, setCount] = useState(0)
+  const [add, setAdd] = useState(false)
 
   const switchView = (e) => {
     e.preventDefault();
     setView(e.target.value);
   };
 
-  let display = <SongsList />;
+  let display = <PlaylistList create={add} />;
 
   switch (view) {
     case "songs":
@@ -33,12 +32,16 @@ const LibraryScreen = () => {
       display = <ArtistList />;
       break;
     case "playlist":
-      display = <PlaylistList />;
+      display = <PlaylistList create={add}/>;
       break;
     default:
-      display = <SongsList />;
+      display = <PlaylistList create={add}/>;
   }
 
+  const createPlaylist = (e) => {
+    e.preventDefault()
+    setAdd(true)
+  }
 
 useEffect(() => {
   
@@ -52,7 +55,7 @@ useEffect(() => {
           <h1 className="text-xl font-bold">Your Library</h1>
           <div className="flex gap-4 items-baseline">
             <Icons type="search" stroke="white" fill="none" />
-            <button className="text-[42px] leading-none font-thin">+</button>
+            <button onClick={createPlaylist} className="text-[42px] leading-none font-thin">+</button>
           </div>
         </div>
         <div className="flex mt-4 gap-2 justify-start">

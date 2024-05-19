@@ -1,31 +1,41 @@
-import Client from './Api'
+import Client from "./Api";
 
 export const GetUser = async (id) => {
   try {
-    const res = await Client.get(`/user/${id}`)
-    return res.data
+    const res = await Client.get(`/user/${id}`);
+    return res.data;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
 export const addToLikedList = async (listType, userId, id) => {
   try {
-    const res = await Client.post(`/user/${userId}/${listType}`, id)
-    return res.data
+    const res = await Client.post(`/user/${userId}/${listType}`, id);
+    return res.data;
   } catch (error) {
-    console.log(error)
-    throw error
+    console.log(error);
+    throw error;
   }
-}
+};
 
 export const removeFromLikedList = async (listType, userId, id) => {
-  try{
+  try {
     const res = await Client.delete(`/user/${userId}/${listType}`, id);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const createUserPlaylist = async (userId, data) => {
+  try {
+    const res = await Client.post(`user/${userId}/playlist`, {
+      data
+    });
     return res.data
   } catch (error) {
-    console.log(error)
-    throw error
+    throw error    
   }
-  
 }

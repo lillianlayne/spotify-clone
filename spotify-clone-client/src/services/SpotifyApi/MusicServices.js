@@ -91,7 +91,15 @@ export const getSingleTrack = async (id) => {
       },
     });
 
-    return response.data
+    return {
+      id: response.data.id,
+      image: response.data.album.images,
+      album: response.data.album, 
+      artists: response.data.artists,
+      name: response.data.name, 
+      duration: response.data.duration_ms
+    }
+
   } catch (error) {
     console.log(error)
   }

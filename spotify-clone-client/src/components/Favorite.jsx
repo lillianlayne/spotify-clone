@@ -21,6 +21,10 @@ const Favorite = ({ type, itemId }) => {
       typeCheck = userData.likedAlbums;
     }
 
+    if (type === 'songs') {
+      typeCheck = userData.likedSongs
+    }
+
     const checked = typeCheck.some((type) => type.content === itemId);
 
     if (checked) {
@@ -64,13 +68,13 @@ const Favorite = ({ type, itemId }) => {
   return liked ? (
     <div>
       <button value={itemId} onClick={(e) => remove(e)}>
-        <Icons type="heart" fill="currentColor" />
+        <Icons type="heart" fill="green" stroke="none" />
       </button>
     </div>
   ) : (
     <div>
       <button value={itemId} onClick={(e) => add(e)}>
-        <Icons type="heart" stroke="currentColor" />
+        <Icons type="heart" fill="none" stroke="currentColor" />
       </button>
     </div>
   );

@@ -9,24 +9,23 @@ import PlaylistSearch from "./searchComponents/PlaylistSearch";
 import Icons from "./Icons";
 import { useClick } from "../context/clickContext";
 
-const Search = ({setSearch}) => {
+const Search = ({ setSearch }) => {
   let navigate = useNavigate();
-  const {click} = useClick()
+  const { click } = useClick();
   const [input, setInput] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [searchData, setSearchData] = useState(null);
 
-
   const handleChange = (e) => {
-    e.preventDefault()
-    setInput(e.target.value)
-  }
+    e.preventDefault();
+    setInput(e.target.value);
+  };
 
   const search = async () => {
     setInput("");
     const fetchedData = await getSearchResults(input);
     setSearchData(fetchedData);
-    setSearch(true)
+    setSearch(true);
   };
 
   const getAlbumInfo = (e) => {
@@ -40,7 +39,6 @@ const Search = ({setSearch}) => {
     }
   };
 
-
   useEffect(() => {
     if (searchData) {
       setLoaded(true);
@@ -49,18 +47,16 @@ const Search = ({setSearch}) => {
     }
   }, [searchData]);
 
-
   useEffect(() => {
-    setLoaded(false)
-    setSearchData(null)
-    setInput('')
-  }, [click])
+    setLoaded(false);
+    setSearchData(null);
+    setInput("");
+  }, [click]);
 
   return (
     <div className="w-full border-b border-stone-600 rounded-b-3xl pt-5 pb-4 mb-4 bg-stone-900">
-      <div className="container flex justify-between items-center border border-stone-700 py-3 px-4 bg-stone-800 rounded-full overflow-hidden">
+      <div className="mx-6 flex justify-between items-center border border-stone-700 py-3 px-4 bg-stone-800 rounded-full overflow-hidden">
         <input
-        className="w-full"
           type="text"
           placeholder="search"
           value={input}
@@ -68,13 +64,25 @@ const Search = ({setSearch}) => {
           onChange={(e) => handleChange(e)}
         />
         <button className="text-stone-600" onClick={search}>
-          <Icons type="search" fill="none" stroke="currentColor"/>
+          <Icons type="search" fill="none" stroke="currentColor" />
         </button>
       </div>
       <div className="flex gap-6 mt-6 flex-col">
-        {searchData ? <ArtistSearch data={searchData.artists[0]} /> : <div className="h-[0px] hidden"></div>}
-        {searchData ? <PlaylistSearch data={searchData.playlists} /> : <div className="h-[0px] hidden"></div>}
-        {searchData ? <AlbumsSearch data={searchData.albums} /> : <div className="h-[0px] hidden"></div>}
+        {searchData ? (
+          <ArtistSearch data={searchData.artists[0]} />
+        ) : (
+          <div className="h-[0px] hidden"></div>
+        )}
+        {searchData ? (
+          <PlaylistSearch data={searchData.playlists} />
+        ) : (
+          <div className="h-[0px] hidden"></div>
+        )}
+        {searchData ? (
+          <AlbumsSearch data={searchData.albums} />
+        ) : (
+          <div className="h-[0px] hidden"></div>
+        )}
       </div>
     </div>
   );

@@ -1,11 +1,22 @@
 import React from 'react'
+import CreatePlaylist from '../userPlaylist.components/CreatePlaylist';
 
-const PlaylistList = () => {
+const PlaylistList = ({create}) => {
+
+
+  let createForm;
+
+  if (create) {
+    createForm = <div>
+      <CreatePlaylist />
+    </div>  
+  } else {
+    createForm = <div className='hidden'>createform</div>  
+  }
+
   return (
     <div>
-      <h1>
-        Playlists
-      </h1>
+      {createForm}
     </div>
   )
 }

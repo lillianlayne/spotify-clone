@@ -16,7 +16,7 @@ const AlbumsSearch = ({data}) => {
 
       {
         data.map((album) => (
-          <Link key={album.id} className="flex-shrink-0 first-card">
+          <Link to={`/albums/${album.id}`} key={album.id} className="flex-shrink-0 first-card">
             <div className="flex flex-col w-32 gap-2 flex-shrink-0">
               <div className="aspect-square w-full object-cover">
 

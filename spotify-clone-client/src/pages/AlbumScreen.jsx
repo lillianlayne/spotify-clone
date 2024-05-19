@@ -12,7 +12,7 @@ const AlbumScreen = ({ user }) => {
   const [album, setAlbum] = useState();
 
   const fetchAlbum = async (songId) => {
-    const fetchedData = await getAlbumTracklist(songId);
+    const fetchedData = await getAlbumTracklist(songId); 
     setAlbum(fetchedData);
   };
 

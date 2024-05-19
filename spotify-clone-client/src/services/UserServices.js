@@ -39,3 +39,12 @@ export const createUserPlaylist = async (userId, data) => {
     throw error    
   }
 }
+
+export const getUserPlaylists = async (id) => {
+  try {
+    const res = await Client.get(`user/playlist/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

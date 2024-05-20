@@ -47,3 +47,13 @@ export const getUserPlaylists = async (id) => {
     throw error
   }
 }
+
+export const deletePlaylist = async (id) => {
+  try {
+    const res = await Client.delete(`/user/${userId}/${id}`, id);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

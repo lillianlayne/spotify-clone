@@ -102,7 +102,7 @@
   }
 
   .caption {
-    @apply text-xs font-thin;
+    @apply text-xs font-thin text-stone-400;
   }
 
   .bottom-shadow {

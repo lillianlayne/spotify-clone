@@ -4,8 +4,10 @@ import { getSingleTrack } from "../services/SpotifyApi/MusicServices";
 import Icons from "../components/Icons";
 import Favorite from "../components/Favorite";
 import PlaybackControls from "../components/cardComponents/PlaybackControls";
+import { useNavigate } from "react-router-dom";
 
 const PlayingScreen = () => {
+  let navigate = useNavigate();
   const { id } = useParams();
   const [info, setInfo] = useState(null);
   const [artists, setArtists] = useState([]);
@@ -40,6 +42,9 @@ const PlayingScreen = () => {
     return `${minutes}:${formatted}`;
   };
 
+  const goBack = () => {
+    
+  }
   useEffect(() => {
     fetchTrack(id);
   }, []);
@@ -58,7 +63,10 @@ const PlayingScreen = () => {
        h-full flex flex-col"
       >
         <div className="flex mt-4 justify-between container">
+          <div onClick={() => navigate(-1)}>
+
           <Icons type="back" fill="currentColor" stroke="none" size="size-8" />
+          </div>
           <div>•••</div>
         </div>
         <div className="container overflow-hidden w-full mx-auto mt-4">

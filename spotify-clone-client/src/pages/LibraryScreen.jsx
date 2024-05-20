@@ -19,7 +19,7 @@ const LibraryScreen = () => {
     setView(e.target.value);
   };
 
-  let display = <PlaylistList create={add} />;
+  let display = <SongsList />;
 
   switch (view) {
     case "songs":
@@ -35,7 +35,7 @@ const LibraryScreen = () => {
       display = <PlaylistList create={add}/>;
       break;
     default:
-      display = <PlaylistList create={add}/>;
+      display = <SongsList />;
   }
 
   const createPlaylist = (e) => {

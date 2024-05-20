@@ -3,7 +3,6 @@ import { useUser } from '../context/userContext'
 
 const AccountScreen = ({handleLogOut}) => {
   const {userData} = useUser();
-
  
 
   return (

@@ -30,13 +30,11 @@ const Nav = ({ handleLogOut }) => {
           <Icons type="music" fill="none" stroke="currentColor" />
         </button>
       </NavLink>
-      <button
-        onClick={(e) => {
-          handleLogOut(e);
-        }}
-      >
+    <NavLink to="/account">
+
         <Icons type="account" fill="none" stroke="currentColor" />
-      </button>
+    </NavLink>
+  
     </nav>
   );
 };

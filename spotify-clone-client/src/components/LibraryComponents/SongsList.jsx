@@ -58,7 +58,7 @@ const SongsList = () => {
                 </p>
               </div>
               <p className="text-sm">
-                {getTime(song.duration_ms)}
+                {getTime(song.duration)}
               </p>
             </div>
           </div>

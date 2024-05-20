@@ -17,6 +17,7 @@ import Register from "./pages/Register";
 import ArtistScreen from "./pages/ArtistScreen";
 import { ClickProvider } from "./context/clickContext";
 import PlayingScreen from "./pages/PlayingScreen";
+import AccountScreen from "./pages/AccountScreen";
 
 const App = () => {
   let navigate = useNavigate();
@@ -72,6 +73,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/artist/:id" element={<ArtistScreen />} />
             <Route path="/playing/:id" element={<PlayingScreen />} />
+            <Route path="/account" element={<AccountScreen handleLogOut={handleLogOut}/>} />
           </Routes>
       </main>
     </div>

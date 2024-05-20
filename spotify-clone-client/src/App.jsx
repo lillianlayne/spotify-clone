@@ -60,7 +60,7 @@ const App = () => {
   }, [user]);
 
   return (
-    <div className="App bg-stone-900">
+    <div className="App bg-stone-900 pb-60">
       {user ? <Nav handleLogOut={handleLogOut} /> : null}
       <main>
           <Routes>

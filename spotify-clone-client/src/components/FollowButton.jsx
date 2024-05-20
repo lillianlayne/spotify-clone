@@ -13,6 +13,16 @@ const FollowButton = ({ action, value }) => {
     setUserData(userData)
   }
 
+  const checkFollow = (id) => {
+    const checked = userData.likedArtists.some((artist) => artist.content === id);
+
+    if (checked) {
+      activate(true)
+    } else {
+      activate(false)
+    }
+  }
+
   const handleClick = (e) => {
     console.log(e.target.value);
     if (active) {
@@ -26,6 +36,9 @@ const FollowButton = ({ action, value }) => {
     }
   };
 
+  useEffect(() => {
+checkFollow(value)
+  }, [])
   useEffect(() => {
     resetUserData(userData._id)
   }, [active])

@@ -29,7 +29,7 @@ const PlaylistDetailScreen = () => {
   }, [tracks, info])
 
   return loaded ? (
-    <div className='container h-screen flex flex-col gap-4 pb-24'>
+    <div className='container h-screen flex flex-col gap-4 pb-60'>
      <img src={info.images[0].url} alt="playlist_image" className='w-3/4 mx-auto mt-4 border-8 rounded-2xl border-stone-900 raised'/>
      <div className="flex flex-col gap-1 my-4 justify-start items-start">
         <div className="title font-bold">
@@ -39,9 +39,9 @@ const PlaylistDetailScreen = () => {
           {info.description}
         </div>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col pb-60">
         {tracks.map((track) => (
-          <TrackCard key={track.track.id} name={track.track.name} image={track.track.album.images[0].url} artists={track.track.artists}/>
+          <TrackCard key={track.track.id} id={track.track.id} name={track.track.name} image={track.track.album.images[0].url} artists={track.track.artists}/>
         ))}
       </div>
     </div>

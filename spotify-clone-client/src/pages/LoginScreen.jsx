@@ -30,13 +30,14 @@ const LoginScreen = ({ setUser }) => {
   };
 
   return (
-    <div className="flex container h-screen items-start px-10 justify-center flex-col">
+    <div className="flex container h-screen items-start px-10 py-20 justify-center flex-col">
       <h1 className="text-3xl leading-none w-full font-bold">
         Log into <br /> your account
       </h1>
       <form onSubmit={login} className="w-full flex mt-12 flex-col gap-2">
-        <div className="border-b border-stone-500 py-4">
+        <div className="border-b border-stone-600 py-4">
           <input
+            className="placeholder:text-stone-500"
             onChange={handleChange}
             name="email"
             type="email"
@@ -45,8 +46,9 @@ const LoginScreen = ({ setUser }) => {
             required
           />
         </div>
-        <div className="border-b border-stone-500 py-4">
+        <div className="border-b border-stone-600 py-4">
           <input
+            className="placeholder:text-stone-500"
             onChange={handleChange}
             name="password"
             type="password"
@@ -63,15 +65,12 @@ const LoginScreen = ({ setUser }) => {
           Log In
         </button>
       </form>
-      <Link className="w-full" to="/register">
-        <button
-          className="btn-primary border w-full text-lime-700 border-lime-700 font-medium rounded-full mt-4"
-          type="submit"
-          onSubmit={login}
-        >
-          Sign Up
-        </button>
-      </Link>
+      <div className="text-sm text-stone-400 font-thin h-full flex gap-2 items-end ">
+        Don't have an account?
+        <Link to="/register">
+          <p className="underline">Sign Up</p>
+        </Link>
+      </div>
     </div>
   );
 };

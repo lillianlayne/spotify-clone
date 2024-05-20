@@ -5,7 +5,6 @@ import { useUser } from "../../context/userContext";
 
 const SongsList = () => {
   const [songs, setSongs] = useState([]);
-  const [songIds, setSongIds] = useState([]);
   const { userData } = useUser();
   const prevLikedSongsRef = useRef([])
 

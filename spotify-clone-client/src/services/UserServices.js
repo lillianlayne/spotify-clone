@@ -30,10 +30,9 @@ export const removeFromLikedList = async (listType, userId, id) => {
 };
 
 export const createUserPlaylist = async (userId, data) => {
+  console.log(data)
   try {
-    const res = await Client.post(`user/${userId}/playlist`, {
-      data
-    });
+    const res = await Client.post(`user/${userId}/playlist`, data);
     return res.data
   } catch (error) {
     throw error    

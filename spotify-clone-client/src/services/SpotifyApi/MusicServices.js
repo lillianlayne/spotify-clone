@@ -86,7 +86,8 @@ export const getAlbumTracklist = async (id) => {
       artist,
       tracks, 
       artistDisplay, 
-      release: response.data.release_date
+      release: response.data.release_date, 
+      id: response.data.id
     };
 
   } catch (error) {

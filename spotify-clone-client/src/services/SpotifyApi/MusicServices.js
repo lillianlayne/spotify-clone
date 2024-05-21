@@ -154,3 +154,22 @@ export const getPlaylistCoverImage = async (id) => {
     console.log(error);
   }
 };
+
+export const getTrackLoop = async (user) => {
+  let data = []
+  const fetchData = async (id) => {
+    const fetchedData = await getSingleTrack(id);
+    return fetchedData
+  }
+
+  for (let song of user) {
+    const fetchedData = await fetchData(song.content) 
+    if (fetchedData) {
+      data.push(fetchedData)
+
+    } 
+  }
+
+  return data
+
+}

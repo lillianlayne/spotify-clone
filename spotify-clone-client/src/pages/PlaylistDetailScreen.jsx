@@ -1,51 +1,74 @@
-import {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
-import { getSpotifyPlaylistInfo, getPlaylistCoverImage } from '../services/SpotifyApi/MusicServices';
-import TrackCard from '../components/cardComponents/TrackCard';
+import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import {
+  getSpotifyPlaylistInfo,
+  getPlaylistCoverImage,
+} from "../services/SpotifyApi/MusicServices";
+import TrackCard from "../components/cardComponents/TrackCard";
+import IndividualSongAndMenu from "../components/TrackComponents/IndividualSongAndMenu";
+import { Parallax } from "react-scroll-parallax";
 
 const PlaylistDetailScreen = () => {
-  const {id} = useParams();
-  const [loaded, setLoaded] = useState(false)
-  const [info, setInfo] = useState(null)
-  const [tracks, setTracks] = useState(null)
+  const { id } = useParams();
+  const [loaded, setLoaded] = useState(false);
+  const [info, setInfo] = useState(null);
+  const [tracks, setTracks] = useState(null);
+  const scrollRef = useRef(null);
 
   const fetchInfo = async () => {
-    const fetchedInfo = await getPlaylistCoverImage(id)
+    const fetchedInfo = await getPlaylistCoverImage(id);
     const fetchedTracks = await getSpotifyPlaylistInfo(id);
-    setInfo(fetchedInfo)
-    setTracks(fetchedTracks.items)
-  }
+    setInfo(fetchedInfo);
+    setTracks(fetchedTracks.items);
+  };
 
   useEffect(() => {
-    fetchInfo()
-  }, [])
+    fetchInfo();
+  }, []);
 
   useEffect(() => {
     if (tracks && info) {
-      setLoaded(true)
+      setLoaded(true);
     } else {
-      setLoaded(false)
+      setLoaded(false);
     }
-  }, [tracks, info])
+  }, [tracks, info]);
 
-  return loaded ? (
-    <div className='container h-screen flex flex-col gap-4 pb-60'>
-     <img src={info.images[0].url} alt="playlist_image" className='w-3/4 mx-auto mt-4 border-8 rounded-2xl border-stone-900 raised'/>
-     <div className="flex flex-col gap-1 my-4 justify-start items-start">
-        <div className="title font-bold">
-          {info.name}
-        </div>
-        <div className="subtitle text-stone-500">
-          {info.description}
-        </div>
-      </div>
-      <div className="flex flex-col pb-60">
-        {tracks.map((track) => (
-          <TrackCard key={track.track.id} id={track.track.id} name={track.track.name} image={track.track.album.images[0].url} artists={track.track.artists}/>
-        ))}
-      </div>
-    </div>
-  ) : <h1>loading</h1>
+const handleScroll = (e) => {
+  const scrollPosition = window.scrollY;
+  console.log(scrollPosition)
 }
 
-export default PlaylistDetailScreen
+  return loaded ? (
+    <div className="relative w-full h-screen no-scrollbar flex items-bottom justify-center ">
+      <div className="div h-[1000px]"></div>
+      <div className="w-full fixed top-0 z-0">
+        <img src={info.images[0].url} alt="" className="w-full" />
+      </div>
+      <div className="w-full h-[95%] z-10 bg-stone-900 bottom-[-45%] absolute overflow-scroll pb-36 rounded-t-3xl no-scrollbar ">
+        <div className="container pt-8">
+          <div className="main-title">{info.name}</div>
+          <div className="text-sm font-thin text-stone-400">
+            {info.description}
+          </div>
+          <div className="pt-8 flex flex-col gap-2">
+            {tracks.map((song) => (
+              <IndividualSongAndMenu
+                key={song.track.id}
+                track={song.track.id}
+                name={song.track.name}
+                explicit={song.track.explicit}
+                image={song.track.album.images[0].url}
+                artists={song.track.artists}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <h1>loading</h1>
+  );
+};
+
+export default PlaylistDetailScreen;

@@ -88,10 +88,10 @@ const IndividualSongAndMenu = ({ track, name, artists, explicit, image }) => {
 
   return loaded ? (
     <div className="w-full flex-col">
-      <div className="w-full flex">
-        {image ? <div>image</div> : <div className="hidden"></div>}
+      <div className="w-full items-center flex">
+        {image ? <img src={image} alt="" className="size-12 mr-2"/> : <div className="hidden"></div>}
         <div className="w-full flex justify-between">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             <div className="title">{name}</div>
             <div className="flex text-stone-500">
               {explicitIcon}

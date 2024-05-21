@@ -89,6 +89,10 @@
     background: var(--card-screen);
   }
 
+  .main-title {
+    font-size: 22px;
+  }
+
   .header {
     @apply text-3xl font-medium leading-tight;
   }
@@ -121,6 +125,22 @@
     box-shadow:  5px 5px 8px #141211 inset,
              -4px -4px 6px #383430 inset;
   }
+
+  .sticky {
+    @apply w-full grid grid-rows-12 h-screen
+  }
+  .drawer-before {
+    @apply w-full flex-col row-start-8 flex
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+  }
 }
 
 body {
@@ -130,4 +150,13 @@ body {
 
 .first-card:nth-child(1) {
   margin-left: 24px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
 }

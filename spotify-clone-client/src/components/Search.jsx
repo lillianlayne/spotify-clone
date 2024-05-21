@@ -57,6 +57,7 @@ const Search = ({ setSearch }) => {
     <div className="w-full border-b border-stone-600 rounded-b-3xl pt-5 pb-4 mb-4 bg-stone-900">
       <div className="mx-6 flex justify-between items-center border border-stone-700 py-3 px-4 bg-stone-800 rounded-full overflow-hidden">
         <input
+        className="w-full"
           type="text"
           placeholder="search"
           value={input}

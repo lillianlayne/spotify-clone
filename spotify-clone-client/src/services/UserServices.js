@@ -30,23 +30,23 @@ export const removeFromLikedList = async (listType, userId, id) => {
 };
 
 export const createUserPlaylist = async (userId, data) => {
-  console.log(data)
+  console.log(data);
   try {
     const res = await Client.post(`user/${userId}/playlist`, data);
-    return res.data
+    return res.data;
   } catch (error) {
-    throw error    
+    throw error;
   }
-}
+};
 
 export const getUserPlaylists = async (id) => {
   try {
-    const res = await Client.get(`user/playlist/${id}`)
-    return res.data
+    const res = await Client.get(`user/playlist/${id}`);
+    return res.data;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
 export const deletePlaylist = async (id) => {
   try {
@@ -56,4 +56,28 @@ export const deletePlaylist = async (id) => {
     console.log(error);
     throw error;
   }
-}
+};
+
+export const getUserPlaylistsLoop = async (userPlaylists) => {
+  let data = [];
+  const fetchData = async (id) => {
+    const fetchedData = await getUserPlaylists(id);
+    return fetchedData;
+  };
+
+  for (let playlist of userPlaylists) {
+    const fetchedData = await fetchData(playlist);
+    data.push(fetchedData);
+  }
+
+  return data;
+};
+
+export const addToPlaylist = async (id, data) => {
+  try {
+    const res = await Client.post(`user/playlist/${id}/add`, data);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};

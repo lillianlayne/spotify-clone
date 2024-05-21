@@ -5,6 +5,7 @@ import { addToLikedList } from "../services/UserServices";
 import Icons from "./Icons";
 import Favorite from "./Favorite";
 import { Link } from "react-router-dom";
+import IndividualSongAndMenu from "./TrackComponents/IndividualSongAndMenu";
 
 const AlbumTracks = ({ track }) => {
   const { userData } = useUser();

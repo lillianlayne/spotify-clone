@@ -98,7 +98,7 @@
   }
 
   .title {
-    @apply text-base leading-none font-normal;
+    @apply text-[15px] leading-none font-normal;
   }
 
   .caption {
@@ -118,8 +118,8 @@
              -8px -8px 17px #2b2723;
   }
   .raised-inset {
-    box-shadow:  5px 5px 10px #1d1a18 inset,
-             -7px -7px 10px #383430 inset;
+    box-shadow:  5px 5px 8px #141211 inset,
+             -4px -4px 6px #383430 inset;
   }
 }
 

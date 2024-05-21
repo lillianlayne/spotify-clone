@@ -40,7 +40,6 @@ const PlaylistDetailScreen = () => {
 
       const scrollPosition = window.scrollY;
       const element = scrollRef.current.offsetTop;
-      console.log(element, scrollPosition)
       if (scrollPosition > element - 100) {
         setScrolling(true)
       }

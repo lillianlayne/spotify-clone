@@ -42,9 +42,7 @@ const PlayingScreen = () => {
     return `${minutes}:${formatted}`;
   };
 
-  const goBack = () => {
-    
-  }
+  const goBack = () => {};
   useEffect(() => {
     fetchTrack(id);
   }, []);
@@ -64,8 +62,12 @@ const PlayingScreen = () => {
       >
         <div className="flex mt-4 justify-between container">
           <div onClick={() => navigate(-1)}>
-
-          <Icons type="back" fill="currentColor" stroke="none" size="size-8" />
+            <Icons
+              type="back"
+              fill="currentColor"
+              stroke="none"
+              size="size-8"
+            />
           </div>
           <div>•••</div>
         </div>

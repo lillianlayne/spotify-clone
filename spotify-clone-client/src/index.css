@@ -148,9 +148,11 @@
   }
 }
 
-body {
+body, html {
   color: white;
   background: #1c1917;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
 }
 
 .first-card:nth-child(1) {

@@ -126,12 +126,13 @@
              -4px -4px 6px #383430 inset;
   }
 
-  .sticky {
-    @apply w-full grid grid-rows-12 h-screen
-  }
-  .drawer-before {
-    @apply w-full flex-col row-start-8 flex
-  }
+ .before-scroll {
+  @apply w-full h-[95%] z-10 bg-stone-900 bottom-[-45%] absolute overflow-hidden pb-36 rounded-t-3xl no-scrollbar 
+ }
+
+ .after-scroll {
+  @apply w-full h-[95%] z-10 bg-stone-900 bottom-[-45%] absolute overflow-scroll pb-36 rounded-t-3xl no-scrollbar 
+ }
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -140,6 +141,10 @@
   .no-scrollbar {
     -ms-overflow-style: none;  
     scrollbar-width: none;  
+  }
+
+  .bottom-shadow {
+    box-shadow: 0px 8px 22px #000000 ;
   }
 }
 

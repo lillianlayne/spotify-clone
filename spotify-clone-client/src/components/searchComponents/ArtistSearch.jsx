@@ -8,7 +8,6 @@ const ArtistSearch = ({data}) => {
 
   const handleClick = (e) => {
     addToLikedList('artists', userData._id, e.target.value)
-    console.log(e.target.value)
   }
 
  

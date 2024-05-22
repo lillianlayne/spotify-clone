@@ -18,10 +18,8 @@ const AddToPlaylistBtn = ({ value, name, playlist, songId }) => {
 
   const checkSong = (itemId) => {
     const checked = playlist.songs.some((song) => {
-      console.log(song.content, itemId)
       return song.content === itemId
     });
-    console.log(checked)
     if (checked) {
       setAdded(true);
     } else {

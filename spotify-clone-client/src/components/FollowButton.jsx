@@ -25,13 +25,10 @@ const FollowButton = ({ action, value }) => {
   };
 
   const handleClick = (e) => {
-    console.log(e.target.value);
     if (active) {
-      // console.log("remove artist");
       activate(false);
     }
     if (!active) {
-      console.log("add artist");
       addToLikedList(action, userData._id, { content: e.target.value });
       activate(true);
     }

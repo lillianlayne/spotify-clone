@@ -25,7 +25,6 @@ const ArtistList = () => {
 
   const setStateData = (data) => {
     const dataSet = fetchArtistData(data.likedArtists);
-    console.log(dataSet);
   };
 
   useEffect(() => {

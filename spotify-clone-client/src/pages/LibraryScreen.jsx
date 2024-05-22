@@ -51,9 +51,6 @@ const LibraryScreen = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (e.target.id === "inner") {
-      console.log('inner')
-    }
 
     if (e.target.id === "outer") {
       setAdd(false)

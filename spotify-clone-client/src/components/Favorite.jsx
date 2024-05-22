@@ -36,7 +36,6 @@ const Favorite = ({ type, itemId }) => {
 
   const add = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     try {
       addToLikedList(type, userData._id, { content: e.target.value });
       setLiked(true);
@@ -48,7 +47,6 @@ const Favorite = ({ type, itemId }) => {
 
   const remove = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     try {
       removeFromLikedList(type, userData._id, { content: e.target.value });
       setLiked(false);

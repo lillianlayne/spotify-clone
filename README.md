@@ -20,9 +20,9 @@ Tailwind
 
 ### Finished Project
 ---
-View the deployed Vercel app [here]('https://spotify-clone-three-omega.vercel.app/)
+View the deployed Vercel app [here](https://spotify-clone-three-omega.vercel.app/)
 <br>
-View backend repository [here]('https://github.com/lillianlayne/spotify-clone-server)
+View backend repository [here](https://github.com/lillianlayne/spotify-clone-server)
 ![alt](./public/images/finishedScreens.png)
 
 ### Wireframes
@@ -46,7 +46,7 @@ __Figma__: Creating high-fidelity wireframing and component organization
 <br>
 __SpotifyAPI__: Utilizing Spotify's API to retrieve data on the music industry
 <br>
-__SpotifyAPI Docs__: All [documentation]('https://developer.spotify.com/documentation/web-api') on the Spotify API database
+__SpotifyAPI Docs__: All [documentation](https://developer.spotify.com/documentation/web-api) on the Spotify API database
 <br>
 __Vercel__: Front-end deployment
 <br>

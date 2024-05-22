@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Icons from '../Icons'
 
-const PlaylistListCard = ({name, photo, id}) => {
+const PlaylistListCard = ({name, data}) => {
   
   return (
-    <div className='w-full gap-4 items-center flex'>
+    <Link to={`/playlist/user/${data._id}`} className='w-full gap-4 items-center flex'>
       <div className="size-10 flex-shrink-0 bg-stone-500 flex justify-center items-center">
         <Icons type="music" fill="currentColor" size="size-6" />
       </div>
@@ -17,7 +17,7 @@ const PlaylistListCard = ({name, photo, id}) => {
             •••
           </p>
       </div>
-    </div>
+    </Link>
   )
 }
 

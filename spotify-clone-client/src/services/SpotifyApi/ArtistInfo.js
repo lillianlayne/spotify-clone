@@ -43,7 +43,7 @@ export const getArtistAlbums = async (artistId) => {
 };
 
 export const getArtistTopTracks = async (artistId) => {
-  // Get Albums By Artists
+  // Get Artists RelatedTo
   const token = await getAuth();
   const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks`;
 
@@ -86,10 +86,14 @@ export const getAllArtistInfo = async (artistId) => {
   const topTracks = await getArtistTopTracks(artistId);
   const relatedArtist = await getArtistsRelatatedArtists(artistId);
 
+
+  const image = info.images[0].url;
+
   return {
     info,
     albums,
     topTracks,
     relatedArtist,
+    image
   };
 };

@@ -11,8 +11,8 @@ const PlaylistSearch = ({ data }) => {
         {limitedList.map((playlist) => (
           <Link key={playlist.id} to={`/playlist/${playlist.id}`}>
           <div key={playlist.id} className="flex justify-start rounded-md overflow-hidden bg-stone-800 items-center gap-2 border h-12 border-stone-800">
-            <div className="h-full object-cover aspect-square">
-            <img src={playlist.images[0].url} alt="" />
+            <div className="aspect-1 object-cover h-full flex-shrink-0">
+            <img src={playlist.images[0].url} alt="" className="h-full w-full object-cover"/>
             </div>
             <div className="subtitle line-clamp-2">
               {playlist.name}

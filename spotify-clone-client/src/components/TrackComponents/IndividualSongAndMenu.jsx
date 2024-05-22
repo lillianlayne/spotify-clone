@@ -27,6 +27,13 @@ const IndividualSongAndMenu = ({ track, name, artists, explicit, image }) => {
     setChecked(true);
   };
 
+  const closeDrawer = (e) => {
+    e.preventDefault();
+    if (e.target.id === 'outside') {
+      setOpen(false)
+    }
+  }
+
   const fetchPlaylists = async () => {
     const fetchedData = await getUserPlaylistsLoop(userData.playlists);
     setUserPlaylists(fetchedData);
@@ -121,6 +128,9 @@ const IndividualSongAndMenu = ({ track, name, artists, explicit, image }) => {
         liked={liked}
         id={track}
         playlists={userPlaylists}
+        image={image}
+        name={name}
+        closeDrawer={closeDrawer}
       />
     </div>
   ) : (

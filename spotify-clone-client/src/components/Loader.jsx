@@ -5,13 +5,13 @@ const Loader = () => {
     <div className="flex w-full items-end justify-center h-48">
       <div className="flex items-end">
 
-      <div class="loader l1"></div>
-      <div class="loader l2"></div>
-      <div class="loader l3"></div>
-      <div class="loader l4"></div>
-      <div class="loader l5"></div>
-      <div class="loader l6"></div>
-      <div class="loader l7"></div>
+      <div className="loader l1"></div>
+      <div className="loader l2"></div>
+      <div className="loader l3"></div>
+      <div className="loader l4"></div>
+      <div className="loader l5"></div>
+      <div className="loader l6"></div>
+      <div className="loader l7"></div>
       </div>
     </div>
   );

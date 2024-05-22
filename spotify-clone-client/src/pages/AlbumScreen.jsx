@@ -15,6 +15,7 @@ const AlbumScreen = () => {
     setData(fetchedData);
   };
 
+
   useEffect(() => {
     if (albumData) {
       setLoaded(true);
@@ -49,6 +50,7 @@ const AlbumScreen = () => {
               name={track.name}
               artists={track.artists}
               explicit={track.explicit}
+              image={albumData.image.url}
             />
           ))}
         </div>

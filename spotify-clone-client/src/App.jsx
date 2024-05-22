@@ -17,6 +17,7 @@ import ArtistScreen from "./pages/ArtistScreen";
 import { ClickProvider } from "./context/clickContext";
 import PlayingScreen from "./pages/PlayingScreen";
 import AccountScreen from "./pages/AccountScreen";
+import UserPlaylistDetailScreen from "./pages/UserPlaylistDetailScreen";
 
 const App = () => {
   let navigate = useNavigate();
@@ -59,7 +60,7 @@ const App = () => {
   }, [user]);
 
   return (
-    <div className="App bg-stone-900 pb-60 no-scrollbar">
+    <div className="App bg-stone-900 no-scrollbar">
       {user ? <Nav handleLogOut={handleLogOut} /> : null}
       <main>
           <Routes>
@@ -73,6 +74,7 @@ const App = () => {
             <Route path="/artist/:id" element={<ArtistScreen />} />
             <Route path="/playing/:id" element={<PlayingScreen />} />
             <Route path="/account" element={<AccountScreen handleLogOut={handleLogOut}/>} />
+            <Route path="/playlist/user/:id" element={<UserPlaylistDetailScreen />} />
           </Routes>
       </main>
       <div className="h-32"></div>

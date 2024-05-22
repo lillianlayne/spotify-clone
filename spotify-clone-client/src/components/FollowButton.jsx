@@ -9,38 +9,40 @@ const FollowButton = ({ action, value }) => {
 
   const resetUserData = async (id) => {
     const userData = await GetUser(id);
-    setUserData(userData)
-  }
+    setUserData(userData);
+  };
 
   const checkFollow = (id) => {
-    const checked = userData.likedArtists.some((artist) => artist.content === id);
+    const checked = userData.likedArtists.some(
+      (artist) => artist.content === id
+    );
 
     if (checked) {
-      activate(true)
+      activate(true);
     } else {
-      activate(false)
+      activate(false);
     }
-  }
+  };
 
   const handleClick = (e) => {
     console.log(e.target.value);
     if (active) {
       // console.log("remove artist");
-      activate(false)
+      activate(false);
     }
     if (!active) {
       console.log("add artist");
-      addToLikedList(action, userData._id, {content: e.target.value})
-      activate(true)
+      addToLikedList(action, userData._id, { content: e.target.value });
+      activate(true);
     }
   };
 
   useEffect(() => {
-checkFollow(value)
-  }, [])
+    checkFollow(value);
+  }, []);
   useEffect(() => {
-    resetUserData(userData._id)
-  }, [active])
+    resetUserData(userData._id);
+  }, [active]);
 
   return active ? (
     <button

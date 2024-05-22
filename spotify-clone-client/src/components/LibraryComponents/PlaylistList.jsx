@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react'
-import CreatePlaylist from '../userPlaylist.components/CreatePlaylist';
 import { useUser } from '../../context/userContext';
 import { getUserPlaylists } from '../../services/UserServices';
 import { useClick } from '../../context/clickContext';
@@ -23,7 +22,6 @@ const PlaylistList = ({create}) => {
     setPlaylists(prev => [...prev, fetchedData])
   }
 
-  let createForm;
 
   useEffect(() => {
     if (userData) {
@@ -37,20 +35,13 @@ const PlaylistList = ({create}) => {
     }
   }, [userData])
 
-  if (create) {
-    createForm = <div>
-      <CreatePlaylist />
-    </div>  
-  } else {
-    createForm = <div className='hidden'>createform</div>  
-  }
+ 
 
   return (
     <div>
-      {createForm}
       <div className="flex flex-col gap-4">
       {playlist.map((list, idx) => (
-        <PlaylistListCard key={list._id} name={list.name}/>
+        <PlaylistListCard key={list._id} name={list.name} data={playlist[idx]}/>
 
       ))}
       </div>

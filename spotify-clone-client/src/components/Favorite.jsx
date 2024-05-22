@@ -36,6 +36,7 @@ const Favorite = ({ type, itemId }) => {
 
   const add = (e) => {
     e.preventDefault();
+    console.log(e.target.value)
     try {
       addToLikedList(type, userData._id, { content: e.target.value });
       setLiked(true);
@@ -68,13 +69,18 @@ const Favorite = ({ type, itemId }) => {
   return liked ? (
     <div>
       <button value={itemId} onClick={(e) => remove(e)}>
+        <div className="pointer-events-none">
+
         <Icons type="heart" fill="green" stroke="none" />
+        </div>
       </button>
     </div>
   ) : (
     <div>
       <button value={itemId} onClick={(e) => add(e)}>
+      <div className="pointer-events-none">
         <Icons type="heart" fill="none" stroke="currentColor" />
+    </div>
       </button>
     </div>
   );

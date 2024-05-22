@@ -4,15 +4,15 @@ import SongsList from "../components/LibraryComponents/SongsList";
 import AlbumsList from "../components/LibraryComponents/AlbumsList";
 import ArtistList from "../components/LibraryComponents/ArtistList";
 import PlaylistList from "../components/LibraryComponents/PlaylistList";
-import { useUser } from '../context/userContext'
+import { useUser } from "../context/userContext";
 import { useClick } from "../context/clickContext";
-
+import CreatePlaylist from "../components/userPlaylist.components/CreatePlaylist";
 
 const LibraryScreen = () => {
-  const {userData, setUserData} = useUser()
-  const {click, setClick} = useClick()
+  const { userData, setUserData } = useUser();
+  const { click, setClick } = useClick();
   const [view, setView] = useState("");
-  const [add, setAdd] = useState(false)
+  const [add, setAdd] = useState(false);
 
   const switchView = (e) => {
     e.preventDefault();
@@ -32,30 +32,47 @@ const LibraryScreen = () => {
       display = <ArtistList />;
       break;
     case "playlist":
-      display = <PlaylistList create={add}/>;
+      display = <PlaylistList create={add} />;
       break;
     default:
       display = <SongsList />;
   }
 
   const createPlaylist = (e) => {
-    e.preventDefault()
-    setAdd(true)
-  }
+    e.preventDefault();
+    if (add) {
+      setAdd(false)
+    } else {
 
-useEffect(() => {
-  
-}, []);
+      setAdd(true)
+    }
+  };
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (e.target.id === "inner") {
+      console.log('inner')
+    }
+
+    if (e.target.id === "outer") {
+      setAdd(false)
+    }
+  };
   
 
   return (
     <div className="container">
+     <CreatePlaylist open={add} handleClick={handleClick} />
       <div className="w-full">
         <div className="flex justify-between items-baseline">
           <h1 className="text-xl font-bold">Your Library</h1>
           <div className="flex gap-4 items-baseline">
             <Icons type="search" stroke="white" fill="none" />
-            <button onClick={createPlaylist} className="text-[42px] leading-none font-thin">+</button>
+            <button
+              onClick={createPlaylist}
+              className="text-[42px] leading-none font-thin"
+            >
+              +
+            </button>
           </div>
         </div>
         <div className="flex mt-4 gap-2 justify-start">
@@ -90,7 +107,9 @@ useEffect(() => {
         </div>
       </div>
 
-      <div key={click} className="mt-8">{display}</div>
+      <div key={click} className="mt-8">
+        {display}
+      </div>
     </div>
   );
 };

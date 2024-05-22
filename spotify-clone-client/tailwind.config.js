@@ -26,25 +26,28 @@ export default {
         translucent7: "rgba(255, 255, 255, 0.7)",
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
         "horizontal-scroll": {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-100%)" },
         },
+        "drawer-open": {
+          from: { transform: "translate(-50%, 50%)" },
+          to: { transform: "translate(-50%, -50%)" },
+        }, 
+        "drawer-close": {
+          from: { transform: "translate(-50%, -50%)" },
+          to: { transform: "translate(-50%, 50%)" },
+        }
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "drawer-open": "drawer-open .5s ease-out",
+        "drawer-close": "drawer-close .5s ease-out",
         "horizontal-scroll": "horizontal-scroll 45s linear infinite",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('tailwindcss-animate'),
+  ],
 };

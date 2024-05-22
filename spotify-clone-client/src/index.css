@@ -147,7 +147,9 @@
     box-shadow: 0px 8px 22px #000000 ;
   }
 
-  
+  .smooth-gradient {
+    background: linear-gradient(0deg, #1C1917 25%, #1C191700)
+  }
 }
 
 body, html {

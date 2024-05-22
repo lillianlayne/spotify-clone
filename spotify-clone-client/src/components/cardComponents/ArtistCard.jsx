@@ -13,10 +13,10 @@ const ArtistCard = ({ image, name, action, id, type }) => {
       </div>
       <div className="flex justify-between items-center w-full">
 
-      <div className="flex flex-col">
+      <Link to={`/artist/${id}`} className="flex flex-col">
         <p className="text-sm text-center">{name}</p>
         <p className="text-xs">{type}</p>
-      </div>
+      </Link>
 
       <FollowButton action="artists" value={id}/>
       </div>

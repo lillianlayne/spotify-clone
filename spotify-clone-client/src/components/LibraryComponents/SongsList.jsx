@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { getTrackLoop } from "../../services/SpotifyApi/MusicServices";
 import { useUser } from "../../context/userContext";
 import Loader from "../Loader";
+import { useClick } from "../../context/clickContext";
 
 const SongsList = () => {
   const [songs, setSongs] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const { userData } = useUser();
+  const {click} = useClick()
 
   const fetchSongs = async () => {
     const fetchedData = await getTrackLoop(userData.likedSongs);
@@ -16,7 +18,7 @@ const SongsList = () => {
 
   useEffect(() => {
     fetchSongs();
-  }, []);
+  }, [click]);
 
   const artistDisplay = (object) => {
     const array = object.map((artist) => {

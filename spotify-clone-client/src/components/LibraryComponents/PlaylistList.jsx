@@ -33,7 +33,7 @@ const PlaylistList = ({create}) => {
         prevRef.current = data
       }
     }
-  }, [userData])
+  }, [userData, click])
 
  
 

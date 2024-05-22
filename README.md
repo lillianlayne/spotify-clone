@@ -15,10 +15,14 @@ JavaScript
 <br>
 Tailwind
 <br>
+ _(tailwind-animate, tailwind-aspect-ratio)_
+<br>
 
 ### Finished Project
 ---
 View the deployed Vercel app [here]('https://spotify-clone-three-omega.vercel.app/)
+<br>
+View backend repository [here]('https://github.com/lillianlayne/spotify-clone-server)
 ![alt](./public/images/finishedScreens.png)
 
 ### Wireframes

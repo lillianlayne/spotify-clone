@@ -44,7 +44,7 @@ const SongsList = () => {
     } else {
       setLoaded(false);
     }
-  }, [songs]);
+  }, [songs, click]);
 
   return loaded ? (
     <div className="flex flex-col gap-4">

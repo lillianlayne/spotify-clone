@@ -13,8 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <UserProvider>
         <ClickProvider>
           <ParallaxProvider>
-
-          <App />
+            <App />
           </ParallaxProvider>
         </ClickProvider>
       </UserProvider>

@@ -18,12 +18,13 @@ import { ClickProvider } from "./context/clickContext";
 import PlayingScreen from "./pages/PlayingScreen";
 import AccountScreen from "./pages/AccountScreen";
 import UserPlaylistDetailScreen from "./pages/UserPlaylistDetailScreen";
+import { useClick } from "./context/clickContext";
 
 const App = () => {
   let navigate = useNavigate();
   const { setUserData } = useUser();
   const [user, setUser] = useState(null);
-
+  const {click} = useClick()
   const checkToken = async () => {
     const user = await CheckSession();
     setUser(user);
@@ -57,7 +58,7 @@ const App = () => {
     } else {
       setUserData(null);
     }
-  }, [user]);
+  }, [user, click]);
 
   return (
     <div className="App bg-stone-900 no-scrollbar">

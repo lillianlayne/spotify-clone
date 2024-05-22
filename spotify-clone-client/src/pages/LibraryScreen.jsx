@@ -16,6 +16,7 @@ const LibraryScreen = () => {
 
   const switchView = (e) => {
     e.preventDefault();
+    setClick(prev => prev + 1)
     setView(e.target.value);
   };
 
@@ -47,6 +48,7 @@ const LibraryScreen = () => {
       setAdd(true)
     }
   };
+
   const handleClick = (e) => {
     e.preventDefault();
     if (e.target.id === "inner") {

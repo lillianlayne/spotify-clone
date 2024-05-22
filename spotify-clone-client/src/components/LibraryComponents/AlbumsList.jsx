@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { useUser } from "../../context/userContext";
 import { getAlbumTracklist } from "../../services/SpotifyApi/MusicServices";
 import Loader from "../Loader";
+import { useClick } from "../../context/clickContext";
 
 const AlbumsList = () => {
   const { userData } = useUser();
+  const {click} = useClick
   const [albumData, setAlbumData] = useState([]);
   const prevLikedAlbumsRef = useRef([]);
   const [loaded, setLoaded] = useState(false);
@@ -31,7 +33,7 @@ const AlbumsList = () => {
         prevLikedAlbumsRef.current = likedAlbums;
       }
     }
-  }, []);
+  }, [click]);
 
   useEffect(() => {
     if (albumData.length) {

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { useUser } from "../context/userContext";
 import NewReleases from "../components/homeComponents/NewReleases";
 import Icons from "../components/Icons";
 import PopularPlaylists from "../components/homeComponents/PopularPlaylists";
 import Search from "../components/Search";
 import { useClick } from "../context/clickContext";
+import Discover from "../components/homeComponents/Discover";
+import Loader from "../components/Loader";
 
 const HomeScreen = ({ user }) => {
-  const { userData } = useUser();
-  const {click, setClick} = useClick()
+  const { click, setClick } = useClick();
   const [search, setSearch] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -17,10 +17,10 @@ const HomeScreen = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    setSearch(false)
-  }, [click])
+    setSearch(false);
+  }, [click]);
 
-  return (
+  return loaded ? (
     <div>
       <div className="container pt-4 flex justify-between items-center bg-stone-900 pb-4">
         <h1 className="header ">Discover</h1>
@@ -32,12 +32,15 @@ const HomeScreen = ({ user }) => {
       {search ? (
         <div className="hidden"></div>
       ) : (
-        <div>
+        <div className="flex flex-col gap-2">
           <NewReleases />
           <PopularPlaylists />
+          <Discover />
         </div>
       )}
     </div>
+  ) : (
+    <Loader />
   );
 };
 

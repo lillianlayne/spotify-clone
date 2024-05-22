@@ -4,9 +4,8 @@ import {
   getSpotifyPlaylistInfo,
   getPlaylistCoverImage,
 } from "../services/SpotifyApi/MusicServices";
-import TrackCard from "../components/cardComponents/TrackCard";
 import IndividualSongAndMenu from "../components/TrackComponents/IndividualSongAndMenu";
-import { Parallax } from "react-scroll-parallax";
+import Loader from "../components/Loader";
 
 const PlaylistDetailScreen = () => {
   const { id } = useParams();
@@ -91,7 +90,7 @@ const PlaylistDetailScreen = () => {
       </div>
     </div>
   ) : (
-    <h1>loading</h1>
+    <Loader />
   );
 };
 

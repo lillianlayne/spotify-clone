@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getSingleTrack } from "../../services/SpotifyApi/MusicServices";
-import TrackDisplay from "../TrackDisplay";
-import { useUser } from "../../context/userContext";
 import { Link } from "react-router-dom";
 import { getTrackLoop } from "../../services/SpotifyApi/MusicServices";
+import { useUser } from "../../context/userContext";
+
 
 const SongsList = () => {
   const [songs, setSongs] = useState([]);

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../context/userContext";
 import { getAlbumTracklist } from "../../services/SpotifyApi/MusicServices";
+import Loader from "../Loader";
 
 const AlbumsList = () => {
   const { userData } = useUser();
@@ -53,7 +54,7 @@ const AlbumsList = () => {
       ))}
     </div>
   ) : (
-    <div>loading</div>
+    <Loader />
   );
 };
 

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SignInUser } from "../services/Auth";
-import { useUser } from "../context/userContext";
-import { GetUser } from "../services/UserServices";
 
 const LoginScreen = ({ setUser }) => {
   let navigate = useNavigate();

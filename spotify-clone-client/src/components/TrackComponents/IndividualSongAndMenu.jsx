@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "../../context/userContext";
 import { useClick } from "../../context/clickContext";
 import TrackMenu from "./TrackMenu";
-import {
-  getUserPlaylists,
-  getUserPlaylistsLoop,
-} from "../../services/UserServices";
+import { getUserPlaylistsLoop } from "../../services/UserServices";
 import { Link } from "react-router-dom";
 
 const IndividualSongAndMenu = ({ track, name, artists, explicit, image }) => {
@@ -88,7 +85,11 @@ const IndividualSongAndMenu = ({ track, name, artists, explicit, image }) => {
   return loaded ? (
     <div className="w-full flex-col">
       <div className="w-full items-center flex">
-        {image ? <img src={image} alt="" className="size-12 mr-2"/> : <div className="hidden"></div>}
+        {image ? (
+          <img src={image} alt="" className="size-12 mr-2" />
+        ) : (
+          <div className="hidden"></div>
+        )}
         <div className="w-full flex justify-between">
           <Link to={`/playing/${track}`} className="flex w-full flex-col gap-1">
             <div className="title">{name}</div>
@@ -115,7 +116,12 @@ const IndividualSongAndMenu = ({ track, name, artists, explicit, image }) => {
           </div>
         </div>
       </div>
-      <TrackMenu open={open} liked={liked} id={track} playlists={userPlaylists}/>
+      <TrackMenu
+        open={open}
+        liked={liked}
+        id={track}
+        playlists={userPlaylists}
+      />
     </div>
   ) : (
     <div></div>

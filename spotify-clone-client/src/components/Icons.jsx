@@ -24,17 +24,20 @@ const Icons = ({fill, stroke, type, size}) => {
 
 
   return (
+    <div className='flex items-center justify-center'>
+
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
         fill={fill}
         stroke={stroke}
-        className={`pointer-events-none ${size}`}
+        className={`pointer-events-none flex items-center justify-center ${size}`}
         viewBox="0 0 24 24"
-      >
+        >
         <path d={icons[type]} />
       </svg>
+        </div>
   )
 }
 

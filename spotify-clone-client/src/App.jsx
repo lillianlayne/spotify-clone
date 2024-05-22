@@ -9,7 +9,6 @@ import Nav from "./components/Nav";
 import LoginScreen from "./pages/LoginScreen";
 import SearchScreen from "./pages/SearchScreen";
 import AlbumScreen from "./pages/AlbumScreen";
-import PlaylistScreen from "./pages/PlaylistScreen";
 import LibraryScreen from "./pages/LibraryScreen";
 import PlaylistDetailScreen from "./pages/PlaylistDetailScreen";
 import { GetUser } from "./services/UserServices";
@@ -76,6 +75,7 @@ const App = () => {
             <Route path="/account" element={<AccountScreen handleLogOut={handleLogOut}/>} />
           </Routes>
       </main>
+      <div className="h-32"></div>
     </div>
   );
 };

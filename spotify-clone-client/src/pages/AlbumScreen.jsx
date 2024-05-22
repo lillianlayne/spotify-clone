@@ -2,9 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAlbumTracklist } from "../services/SpotifyApi/MusicServices";
-import TrackDisplay from "../components/TrackDisplay";
-import { addToLikedList } from "../services/UserServices";
-import { useUser } from "../context/userContext";
 import Favorite from "../components/Favorite";
 import IndividualSongAndMenu from "../components/TrackComponents/IndividualSongAndMenu";
 

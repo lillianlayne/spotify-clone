@@ -1,40 +1,48 @@
 import { NavLink } from "react-router-dom";
-// import SignIn from '../pages/SignIn';
-import Icons from "./Icons";
-import { useUser } from "../context/userContext";
-import { useEffect, useState } from "react";
 import { useClick } from "../context/clickContext";
+import {
+  HomeIcon,
+  MagnifyingGlassIcon,
+  MusicalNoteIcon,
+} from "@heroicons/react/16/solid";
+import { MusicNoteList, PersonFill } from "react-bootstrap-icons";
 
 const Nav = ({ handleLogOut }) => {
-  const { userData } = useUser();
-  const {click, setClick} = useClick();
+  const { click, setClick } = useClick();
 
   const handleClick = () => {
-    setClick(prev => prev + 1)
-  }
-
-
+    setClick((prev) => prev + 1);
+  };
 
   return (
     <nav className="flex flex-row py-8 w-full fixed bottom-0 top-shadow z-20 backdrop-blur-lg rounded-t-3xl border-t border-stone-700 text-stone-500 justify-around">
       <NavLink to="/">
         <button onClick={handleClick}>
-        <Icons type="home" fill="none" stroke="currentColor" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 800 800"
+            fill="none"
+          >
+            <path
+              d="M399.845 0C179.37 0 0 179.384 0 399.877C0 620.506 179.37 800 399.845 800C620.49 800 800 620.506 800 399.877C800 179.384 620.49 0 399.845 0ZM196.931 546.807C243.289 532.695 290.82 525.54 338.195 525.54C418.657 525.54 498.091 545.931 567.945 584.53C572.1 586.793 575.877 594.279 577.571 603.599C579.266 612.915 578.591 622.497 575.871 627.481C572.438 633.875 565.471 638.009 558.119 638.009C554.476 638.009 551.273 637.191 548.071 635.46C483.945 600.212 411.373 581.579 338.195 581.579C293.986 581.579 250.584 588.123 209.233 601.012C207.218 601.624 205.146 601.936 203.074 601.936C194.02 601.938 186.161 596.17 183.525 587.612C179.966 575.911 187.329 549.946 196.931 546.807ZM179.489 399.483C231.158 385.437 284.556 378.313 338.198 378.313C434.631 378.313 530.39 401.647 615.184 445.826C621.128 448.842 625.508 453.957 627.515 460.226C629.55 466.576 628.936 473.403 625.76 479.496C618.193 494.306 609.348 504.257 603.746 504.257C599.774 504.257 595.942 503.305 592.126 501.398C513.388 460.396 427.955 439.607 338.195 439.607C288.268 439.607 239.284 446.172 192.65 459.108C190.481 459.696 188.254 459.992 186.038 459.992C174.82 459.995 164.934 452.417 162.007 441.597C158.258 427.525 166.822 402.927 179.489 399.483ZM175.022 303.229C172.653 303.814 170.232 304.108 167.824 304.108C154.266 304.11 142.518 294.948 139.255 281.847C135.166 265.262 145.542 245.996 160.569 242.211C219.011 227.856 278.772 220.577 338.195 220.577C453.228 220.577 563.394 246.439 665.673 297.461C672.776 300.965 678.072 307.014 680.59 314.492C683.108 321.978 682.552 330.035 679.037 337.154C674.248 346.741 663.898 357.062 652.49 357.062C648.092 357.062 643.575 356.031 639.575 354.153C545.624 307.148 444.226 283.313 338.198 283.313C283.709 283.315 228.81 290.014 175.022 303.229Z"
+              fill="currentColor"
+            />
+          </svg>
         </button>
       </NavLink>
       <NavLink to="/search">
-        <Icons type="search" fill="none" stroke="currentColor" />
+        <MagnifyingGlassIcon className="size-6" />
       </NavLink>
       <NavLink to="/library">
         <button onClick={handleClick}>
-          <Icons type="music" fill="none" stroke="currentColor" />
+          <MusicNoteList className="size-6" />
         </button>
       </NavLink>
-    <NavLink to="/account">
-
-        <Icons type="account" fill="none" stroke="currentColor" />
-    </NavLink>
-  
+      <NavLink to="/account">
+        <PersonFill className="size-6" />
+      </NavLink>
     </nav>
   );
 };

@@ -48,7 +48,7 @@ const PlayingScreen = () => {
   }, []);
 
   return info ? (
-    <div className="h-screen w-screen z-20 relative">
+    <div className="h-screen w-screen z-10 relative">
       <div className="absolute transform-center bg-stone-900 w-full object-cover h-full">
         <img
           src={image[0].url}
@@ -76,15 +76,15 @@ const PlayingScreen = () => {
         </div>
         <div className="container flex mt-3 justify-between items-start">
           <div className="flex flex-col">
-            <p className="title">{info.name}</p>
+            <p className="main-title">{info.name}</p>
             <p className="caption mt-1">{artistDisplay(artists)}</p>
           </div>
           <div>
             <Favorite type="songs" itemId={info.id} />
           </div>
         </div>
-        <div className="container flex flex-col gap-2">
-          <div className="w-full h-1 bg-stone-600 rounded-lg"></div>
+        <div className="container py-8 flex flex-col gap-2">
+          <div className="w-full h-1 bg-translucent2 rounded-lg"></div>
           <div className="w-full flex text-stone-400 justify-between">
             <p className="caption font-medium">0:00</p>
             <p className="caption font-medium">{getTime(info.duration)}</p>

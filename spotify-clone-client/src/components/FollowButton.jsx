@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Icons from "./Icons";
 import { useUser } from "../context/userContext";
 import { addToLikedList } from "../services/UserServices";
 import { GetUser } from "../services/UserServices";

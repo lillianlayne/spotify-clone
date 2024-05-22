@@ -5,7 +5,6 @@ import { useUser } from "../../context/userContext"
 
 const ArtistSearch = ({data}) => {
   const {userData} = useUser();
-  const [userId, setUserId] = useState(null)
 
   const handleClick = (e) => {
     addToLikedList('artists', userData._id, e.target.value)

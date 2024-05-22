@@ -21,7 +21,7 @@ const NewReleases = () => {
   }, [loaded]);
 
   return (
-    <div className="container-overflow flex gap-1 flex-col items-start py-2 w-full">
+    <div className="container-overflow flex gap-1 flex-col items-start w-full">
       <h1 className="title container">New Releases</h1>
       <div className="w-full flex gap-2 flex-row justify-start h-64 no-scrollbar overflow-scroll">
         {newReleases.map((album) => (

@@ -15,7 +15,7 @@ const PopularPlaylists = () => {
   }, [])
 
   return (
-    <div className='container-overflow mt-3 flex gap-1 flex-col items-start py-2 w-full'>
+    <div className='container-overflow flex gap-1 flex-col items-start w-full'>
       <h1 className="title container">
         Popular Playlists
       </h1>
@@ -27,7 +27,7 @@ const PopularPlaylists = () => {
               <Link to={`/playlist/${list.id}`}>
               <div className="flex flex-col gap-2">
               <img src={list.images[0].url} alt={list.name} className='' />
-              <div className="subtitle">
+              <div className="subtitle line-clamp-1">
                 {list.name}
               </div>
               </div>

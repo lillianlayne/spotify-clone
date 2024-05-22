@@ -47,7 +47,7 @@ const SongsList = () => {
   }, [songs, click]);
 
   return loaded ? (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       {songs.map((song) => (
         <Link key={song.id} to={`/playing/${song.id}`}>
           <div className="flex items-center gap-4" key={song.id}>

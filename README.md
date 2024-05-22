@@ -16,6 +16,10 @@ JavaScript
 Tailwind
 <br>
 
+### Finished Project
+---
+View the deployed Vercel app [here]('https://spotify-clone-three-omega.vercel.app/)
+![alt](./public/images/finishedScreens.png)
 
 ### Wireframes
 ---
@@ -30,10 +34,16 @@ Tailwind
 ![alt](./public/images/App_Components.png)
 ### Getting Started 
 ---
-View the deployed version here (link available soon)
+
 
 ### Other Sources
 ---
 __Figma__: Creating high-fidelity wireframing and component organization 
 <br>
 __SpotifyAPI__: Utilizing Spotify's API to retrieve data on the music industry
+<br>
+__SpotifyAPI Docs__: All [documentation]('https://developer.spotify.com/documentation/web-api') on the Spotify API database
+<br>
+__Vercel__: Front-end deployment
+<br>
+__Heroku__: Back-end deployment
